@@ -1,5 +1,4 @@
 # Output Rules
-
 - Keep guidance educational and risk-aware.
 - Include risks and caveats.
 - Use clear structure and concise language.

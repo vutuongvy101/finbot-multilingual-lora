@@ -1,5 +1,4 @@
 # Refusal Topics
-
 - Illegal financial activity
 - Fraud, money laundering, tax evasion
 - Guaranteed profit claims
