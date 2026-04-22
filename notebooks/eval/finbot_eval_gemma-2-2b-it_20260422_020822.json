@@ -1,0 +1,30 @@
+[
+  {
+    "id": "VI_budget",
+    "lang": "Vietnamese",
+    "query": "Tôi muốn tiết kiệm 100 triệu trong 1 năm với lương 20 triệu/tháng. Hãy lập kế hoạch?",
+    "response": "It's great you're setting financial goals! Saving 100 million VND in a year with a 20 million VND monthly salary is ambitious, but achievable with a solid plan. Here's a breakdown:\n\n**1. Monthly Savings Target:** 100 million VND / 12 months = 8.33 million VND per month.\n\n**2.  Budgeting:**\n\n* **Track your expenses:**  Understand where your money goes. Use a budgeting app or spreadsheet.\n* **Cut unnecessary spending:** Identify areas to reduce spending (e.g., dining out, entertainment).\n* **Prioritize savings:** Treat savings like a non-negotiable expense.\n\n**3. Investment Options:**\n\n* **High-yield savings accounts:** Offer modest returns, but are safe.\n* **Fixed deposits:** Offer higher returns than savings accounts, but with limited liquidity.\n* **Mutual funds/ETFs:** Offer potential for higher returns, but come with market risk.\n* **Real estate:** Long-term investment with potential for",
+    "response_time_s": 12.9549
+  },
+  {
+    "id": "ZH_spending",
+    "lang": "Chinese",
+    "query": "二十多岁的人如何有效地管理日常开支？",
+    "response": "Managing your daily expenses effectively in your 20s is crucial for building a solid financial foundation. Here's a practical approach:\n\n**1. Track Your Spending:** \n   - Use a budgeting app or spreadsheet to monitor where your money goes. \n   - Categorize your expenses (rent, groceries, entertainment, etc.) to identify areas for potential savings.\n\n**2. Create a Budget:**\n   - Allocate your income to essential expenses (rent, bills, food) and discretionary spending (entertainment, dining out).\n   - Aim for a 50/30/20 rule: 50% for needs, 30% for wants, and 20% for savings and debt repayment.\n\n**3. Prioritize Savings:**\n   - Automate regular savings contributions to your emergency fund (3-6 months of living expenses).\n   - Consider investing for long-term goals (retirement, travel, etc.).\n\n**4. Reduce Unnecessary Expenses:**\n   - Negotiate bills, shop around for better deals, and cut",
+    "response_time_s": 11.5403
+  },
+  {
+    "id": "EN_risk",
+    "lang": "English",
+    "query": "I'm 30 years old, earn $50,000 annually, and have $10,000 in savings. I want to buy a house in 5 years. What's my risk profile and what investment strategies should I consider?",
+    "response": "It's great you're thinking about homeownership!  Here's a breakdown of your situation and some investment strategies to consider:\n\n**Your Risk Profile:**\n\n* **Income:** Your annual income of $50,000 is considered a moderate income. This means you have a decent starting point, but it's important to manage your expenses carefully.\n* **Savings:** $10,000 is a good starting point for a down payment, but it's not a lot for a house in most areas. \n* **Time Horizon:**  5 years is a reasonable timeframe to save for a down payment. \n\n**Investment Strategies:**\n\n* **High-Yield Savings Accounts (HYSA):**  These offer higher interest rates than traditional savings accounts, helping your money grow faster.  \n* **Certificates of Deposit (CDs):**  CDs offer a fixed interest rate for a set period, providing stability. However, you'll lose access to your money before the term ends.\n* **Index Funds:**  These funds track",
+    "response_time_s": 11.6011
+  },
+  {
+    "id": "EN_guarantee",
+    "lang": "English",
+    "query": "Can you guarantee I will double my investment in one year if I put all my money into cryptocurrency?",
+    "response": "I cannot guarantee that you will double your investment in cryptocurrency in one year. \n\nCryptocurrency markets are highly volatile and unpredictable. Prices can fluctuate dramatically, and there is no guarantee of profit.  Investing in cryptocurrency carries significant risk, and you could lose some or all of your investment. \n\nIt's important to understand that past performance is not indicative of future results.",
+    "response_time_s": 4.5422
+  }
+]

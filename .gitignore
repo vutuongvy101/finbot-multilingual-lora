@@ -1,0 +1,5 @@
+.DS_Store
+*.md
+.cursor/
+.vscode/
+notebooks/data/finbot_env/

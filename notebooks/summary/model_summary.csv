@@ -1,0 +1,4 @@
+model,n_samples,avg_weighted,avg_instruction,avg_finance,avg_safety,avg_language,avg_structured
+Qwen2.5-1.5B-Instruct,4,4.47,5.0,4.0,3.75,5.0,4.5
+Qwen2.5-0.5B-Instruct,4,4.4,5.0,4.0,3.75,5.0,4.0
+gemma-2-2b-it,4,4.38,5.0,4.75,4.0,3.5,4.5
