@@ -426,6 +426,30 @@
       white-space: pre-wrap;
       line-height: 1.5;
     }
+    .analysis-details { margin: 0; }
+    .analysis-details summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      user-select: none;
+    }
+    .analysis-details summary::-webkit-details-marker { display: none; }
+    .analysis-details summary h6 {
+      margin-bottom: 0;
+      display: inline;
+    }
+    .analysis-details summary::before {
+      content: "▶";
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      transition: transform 0.15s;
+      flex-shrink: 0;
+    }
+    .analysis-details[open] summary::before { transform: rotate(90deg); }
+    .analysis-details p { margin-top: 0.4rem; margin-bottom: 0; }
+
     .source-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .source-chip {
       border: 1px solid var(--success);
