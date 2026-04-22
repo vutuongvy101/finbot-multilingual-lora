@@ -15,7 +15,7 @@ def _extract_json(text: str) -> str | None:
 
 def _fallback(collected: dict[str, str], unknown_fields: list[str]) -> RecommendationPayload:
     return RecommendationPayload(
-        profile_summary=", ".join(f"{k}={v}" for k, v in collected.items()) or "Profile captured.",
+        profile_summary=_natural_profile_summary(collected),
         recommendation="Start with diversified, low-cost instruments and phased allocation aligned to your risk and horizon.",
         reasoning="Recommendation is based on provided goals, risk tolerance, and time horizon.",
         risks_caveats=(
@@ -26,12 +26,51 @@ def _fallback(collected: dict[str, str], unknown_fields: list[str]) -> Recommend
     )
 
 
+def _field_label(field: str) -> str:
+    labels = {
+        "GOAL": "financial goal",
+        "INCOME_BAND": "annual income range",
+        "CAPITAL_RANGE": "investment amount",
+        "TIME_HORIZON": "time horizon",
+        "RISK_TOLERANCE": "risk tolerance",
+    }
+    return labels.get(field, field.replace("_", " ").lower())
+
+
+def _natural_profile_summary(collected: dict[str, str]) -> str:
+    if not collected:
+        return "Your profile information has been captured."
+
+    ordered_fields = ["GOAL", "INCOME_BAND", "CAPITAL_RANGE", "TIME_HORIZON", "RISK_TOLERANCE"]
+    parts: list[str] = []
+    for field in ordered_fields:
+        value = collected.get(field)
+        if value:
+            parts.append(f"your {_field_label(field)} is {value}")
+
+    if not parts:
+        return "Your profile information has been captured."
+
+    if len(parts) == 1:
+        return f"Based on your inputs, {parts[0]}."
+
+    return f"Based on your inputs, {', '.join(parts[:-1])}, and {parts[-1]}."
+
+
+def _looks_machine_like(summary: str) -> bool:
+    signals = ("GOAL=", "INCOME_BAND=", "CAPITAL_RANGE=", "TIME_HORIZON=", "RISK_TOLERANCE=")
+    return any(token in summary for token in signals)
+
+
 def generate_recommendation(prompt: str, model_id: str, collected: dict[str, str], unknown_fields: list[str]) -> RecommendationPayload:
     raw = generate(prompt, model_id)
     blob = _extract_json(raw)
     if blob:
         try:
-            return RecommendationPayload.model_validate_json(blob)
+            parsed = RecommendationPayload.model_validate_json(blob)
+            if _looks_machine_like(parsed.profile_summary):
+                parsed.profile_summary = _natural_profile_summary(collected)
+            return parsed
         except Exception:
             pass
 
@@ -41,7 +80,10 @@ def generate_recommendation(prompt: str, model_id: str, collected: dict[str, str
     blob2 = _extract_json(raw2)
     if blob2:
         try:
-            return RecommendationPayload.model_validate_json(blob2)
+            parsed = RecommendationPayload.model_validate_json(blob2)
+            if _looks_machine_like(parsed.profile_summary):
+                parsed.profile_summary = _natural_profile_summary(collected)
+            return parsed
         except Exception:
             pass
 

@@ -1,286 +1,385 @@
 const STORAGE_KEYS = {
-    sessionId: "finbot.session_id",
-    chatHistory: "finbot.chat_history",
-    lastResponse: "finbot.last_response",
-    languagePreference: "finbot.language_preference"
-  };
-  
-  const API_BASE = window.APP_API_BASE || "http://127.0.0.1:8000";
-  const TURN_URL = `${API_BASE}/chat/turn`;
-  
-  const chatList = document.getElementById("chatList");
-  const chatForm = document.getElementById("chatForm");
-  const chatInput = document.getElementById("chatInput");
-  const sendBtn = document.getElementById("sendBtn");
-  const resetBtn = document.getElementById("resetBtn");
-  const recommendationArea = document.getElementById("recommendationArea");
-  const langSelect = document.getElementById("langSelect");
-  
-  const sessionBadge = document.getElementById("sessionBadge");
-  const apiBaseLabel = document.getElementById("apiBaseLabel");
-  const stateValue = document.getElementById("stateValue");
-  const taskModeValue = document.getElementById("taskModeValue");
-  const nextItemValue = document.getElementById("nextItemValue");
-  const readyValue = document.getElementById("readyValue");
-  const langValue = document.getElementById("langValue");
-  const collectedJson = document.getElementById("collectedJson");
-  
-  apiBaseLabel.textContent = API_BASE;
-  
-  function loadSessionId() {
-    return localStorage.getItem(STORAGE_KEYS.sessionId);
-  }
-  
-  function saveSessionId(id) {
-    if (id) localStorage.setItem(STORAGE_KEYS.sessionId, id);
-  }
-  
-  function loadHistory() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEYS.chatHistory) || "[]");
-    } catch {
-      return [];
-    }
-  }
-  
-  function saveHistory(history) {
-    localStorage.setItem(STORAGE_KEYS.chatHistory, JSON.stringify(history));
-  }
-  
-  function saveLastResponse(data) {
-    localStorage.setItem(STORAGE_KEYS.lastResponse, JSON.stringify(data));
+  sessionId: "finbot.session_id",
+  chatHistory: "finbot.chat_history",
+  lastResponse: "finbot.last_response",
+  languagePreference: "finbot.language_preference"
+};
+
+const API_BASE = window.APP_API_BASE || "http://127.0.0.1:8000";
+const TURN_URL = `${API_BASE}/chat/turn`;
+const MODEL_LOAD_URL = `${API_BASE}/model/load`;
+
+const chatList      = document.getElementById("chatList");
+const chatForm      = document.getElementById("chatForm");
+const chatInput     = document.getElementById("chatInput");
+const sendBtn       = document.getElementById("sendBtn");
+const resetBtn      = document.getElementById("resetBtn");
+const modelSelect   = document.getElementById("modelSelect");
+const langSelect    = document.getElementById("langSelect");
+
+const sessionBadge  = document.getElementById("sessionBadge");
+const apiBaseLabel  = document.getElementById("apiBaseLabel");
+const stateValue    = document.getElementById("stateValue");
+const taskModeValue = document.getElementById("taskModeValue");
+const nextItemValue = document.getElementById("nextItemValue");
+const readyValue    = document.getElementById("readyValue");
+const langValue     = document.getElementById("langValue");
+const collectedJson = document.getElementById("collectedJson");
+
+apiBaseLabel.textContent = API_BASE;
+
+// ── Storage helpers ─────────────────────────────────────────────────────────
+
+function loadSessionId() { return localStorage.getItem(STORAGE_KEYS.sessionId); }
+function saveSessionId(id) { if (id) localStorage.setItem(STORAGE_KEYS.sessionId, id); }
+
+function loadHistory() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.chatHistory) || "[]"); }
+  catch { return []; }
+}
+function saveHistory(history) { localStorage.setItem(STORAGE_KEYS.chatHistory, JSON.stringify(history)); }
+function saveLastResponse(data) { localStorage.setItem(STORAGE_KEYS.lastResponse, JSON.stringify(data)); }
+
+function getLanguageHint() { return langSelect?.value || "en"; }
+function getModelId() { return modelSelect?.value || "Qwen/Qwen2.5-1.5B-Instruct"; }
+
+function restoreLanguagePreference() {
+  const saved = localStorage.getItem(STORAGE_KEYS.languagePreference);
+  if (!saved || !langSelect) return;
+  if (["en", "vi", "zh"].includes(saved)) langSelect.value = saved;
+}
+
+// ── HTML escaping ────────────────────────────────────────────────────────────
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+// ── Avatar SVG helpers ───────────────────────────────────────────────────────
+
+function botAvatarHtml() {
+  return `<div class="avatar avatar-bot" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+  </div>`;
+}
+
+function userAvatarHtml() {
+  return `<div class="avatar avatar-user" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+  </div>`;
+}
+
+// ── Bubble rendering ─────────────────────────────────────────────────────────
+
+function appendBubble(role, text, { id = null, loading = false, recommendation = null } = {}) {
+  const isUser = role === "user";
+  const row = document.createElement("div");
+  row.className = `msg-row${isUser ? " user" : ""}`;
+  if (id) row.dataset.id = id;
+
+  const bubble = document.createElement("div");
+  bubble.className = `bubble ${isUser ? "bubble-user" : "bubble-assistant"}`;
+
+  if (loading) {
+    bubble.innerHTML = `
+      <div style="display:flex;align-items:center;">
+        <div class="typing-dots"><span></span><span></span><span></span></div>
+        <span class="loading-label">${escapeHtml(text)}</span>
+      </div>`;
+  } else {
+    renderAssistantContent(bubble, text, recommendation);
   }
 
-  function getLanguageHint() {
-    return langSelect?.value || "en";
+  row.innerHTML = isUser ? userAvatarHtml() : botAvatarHtml();
+  if (isUser) {
+    row.insertBefore(bubble, row.firstChild);
+  } else {
+    row.appendChild(bubble);
   }
 
-  function restoreLanguagePreference() {
-    const saved = localStorage.getItem(STORAGE_KEYS.languagePreference);
-    if (!saved || !langSelect) return;
-    if (["en", "vi", "zh"].includes(saved)) {
-      langSelect.value = saved;
-    }
-  }
-  
-  function appendBubble(role, text, { id = null, loading = false } = {}) {
-    const div = document.createElement("div");
-    div.className = `bubble ${role === "user" ? "bubble-user" : "bubble-assistant"}`;
-    if (id) div.dataset.id = id;
-  
-    if (loading) {
-      div.innerHTML = `
-        <div class="d-flex align-items-center gap-2">
-          <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
-          <span>${text}</span>
-        </div>
-      `;
-    } else {
-      div.textContent = text;
-    }
-  
-    chatList.appendChild(div);
-    chatList.scrollTop = chatList.scrollHeight;
-  }
-  
-  function replaceBubble(id, text) {
-    const target = chatList.querySelector(`[data-id="${id}"]`);
-    if (!target) return;
-    target.innerHTML = "";
-    target.textContent = text;
-  }
-  
-  function renderHistory() {
-    chatList.innerHTML = "";
-    const history = loadHistory();
-    history.forEach((item) => appendBubble(item.role, item.text));
-  }
-  
-  function renderRecommendation(rec) {
-    recommendationArea.innerHTML = "";
-    if (!rec) return;
-  
-    const card = document.createElement("div");
-    card.className = "card shadow-sm recommendation-card";
-    card.innerHTML = `
-      <div class="card-body">
-        <h5 class="card-title mb-3">Recommendation</h5>
-        <p><strong>Profile Summary:</strong><br>${escapeHtml(rec.profile_summary)}</p>
-        <p><strong>Recommendation:</strong><br>${escapeHtml(rec.recommendation)}</p>
-        <p><strong>Reasoning:</strong><br>${escapeHtml(rec.reasoning)}</p>
-        <p><strong>Risks & Caveats:</strong><br>${escapeHtml(rec.risks_caveats)}</p>
-        <p><strong>Sources:</strong><br>${escapeHtml((rec.sources || []).join(", ") || "N/A")}</p>
-        <p class="mb-0"><strong>Disclaimer:</strong><br>${escapeHtml(rec.disclaimer)}</p>
+  chatList.appendChild(row);
+  chatList.scrollTop = chatList.scrollHeight;
+}
+
+function replaceBubble(id, text, recommendation = null) {
+  const row = chatList.querySelector(`[data-id="${id}"]`);
+  if (!row) return;
+  const bubble = row.querySelector(".bubble");
+  if (bubble) renderAssistantContent(bubble, text, recommendation);
+}
+
+function updateLoadingBubbleText(id, text) {
+  const row = chatList.querySelector(`[data-id="${id}"]`);
+  if (!row) return;
+  const label = row.querySelector(".loading-label");
+  if (label) label.textContent = text;
+}
+
+// ── Recommendation card ──────────────────────────────────────────────────────
+
+function createRecommendationCard(rec) {
+  if (!rec) return null;
+
+  const safeSources = Array.isArray(rec.sources)
+    ? rec.sources.filter((s) => s && String(s).trim()) : [];
+  const sourceChips = safeSources.length > 0
+    ? safeSources.map((s) => `<span class="source-chip">${escapeHtml(s)}</span>`).join("")
+    : `<span class="source-chip">N/A</span>`;
+
+  const card = document.createElement("div");
+  card.className = "recommendation-card";
+  card.innerHTML = `
+    <div class="recommendation-header">
+      <h5>Personalized Recommendation</h5>
+      <p class="recommendation-subtitle">Generated from your profile inputs and current session context.</p>
+    </div>
+    <div class="recommendation-body">
+      <div class="recommendation-grid">
+        <section class="recommendation-item recommendation-item-wide">
+          <h6>Profile Summary</h6>
+          <p>${escapeHtml(rec.profile_summary || "N/A")}</p>
+        </section>
+        <section class="recommendation-item recommendation-item-wide">
+          <h6>Recommendation</h6>
+          <p>${escapeHtml(rec.recommendation || "N/A")}</p>
+        </section>
+        <section class="recommendation-item">
+          <h6>Reasoning</h6>
+          <p>${escapeHtml(rec.reasoning || "N/A")}</p>
+        </section>
+        <section class="recommendation-item">
+          <h6>Risks &amp; Caveats</h6>
+          <p>${escapeHtml(rec.risks_caveats || "N/A")}</p>
+        </section>
+        <section class="recommendation-item recommendation-item-wide">
+          <h6>Sources</h6>
+          <div class="source-badges">${sourceChips}</div>
+        </section>
+        <section class="recommendation-item recommendation-item-wide">
+          <h6>Disclaimer</h6>
+          <p>${escapeHtml(rec.disclaimer || "N/A")}</p>
+        </section>
       </div>
-    `;
-    recommendationArea.appendChild(card);
+    </div>`;
+  return card;
+}
+
+function renderAssistantContent(target, text, recommendation = null) {
+  target.innerHTML = "";
+  const p = document.createElement("p");
+  p.style.marginBottom = "0";
+  p.textContent = text;
+  target.appendChild(p);
+
+  const card = createRecommendationCard(recommendation);
+  if (card) {
+    target.classList.add("has-recommendation");
+    target.appendChild(card);
+  } else {
+    target.classList.remove("has-recommendation");
   }
-  
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-  
-  function updateSidePanel(data) {
-    sessionBadge.textContent = data.session_id ? `Session: ${data.session_id.slice(0, 8)}...` : "No session";
-    stateValue.textContent = data.state || "-";
-    taskModeValue.textContent = data.task_mode || "-";
-    nextItemValue.textContent = data.next_item || "-";
-    readyValue.textContent = String(Boolean(data.ready_for_recommendation));
-    readyValue.className = `badge ${data.ready_for_recommendation ? "text-bg-success" : "text-bg-secondary"}`;
-    langValue.textContent = data.detected_language || "-";
-    collectedJson.textContent = JSON.stringify(data.collected || {}, null, 2);
-  }
-  
-  function setSending(isSending) {
-    chatInput.disabled = isSending;
-    sendBtn.disabled = isSending;
-  }
+}
 
-  async function initializeChat() {
-    const existingHistory = loadHistory();
-    if (existingHistory.length > 0) return;
+// ── History rendering ────────────────────────────────────────────────────────
 
-    const loadingId = `loading-init-${Date.now()}`;
-    appendBubble("assistant", "Starting chat...", { id: loadingId, loading: true });
-    setSending(true);
+function renderHistory() {
+  chatList.innerHTML = "";
+  loadHistory().forEach((item) =>
+    appendBubble(item.role, item.text, { recommendation: item.recommendation || null })
+  );
+}
 
-    const payload = {
-      session_id: loadSessionId(),
-      message: "__INIT__",
-      model_id: "qwen2.5-1.5b-instruct",
-      language_hint: getLanguageHint()
-    };
+function buildAssistantDialogueText(data) {
+  return data.assistant_message || "(empty response)";
+}
 
-    try {
-      const res = await fetch(TURN_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+// ── Side panel ───────────────────────────────────────────────────────────────
 
-      if (!res.ok) {
-        const body = await res.text();
-        throw new Error(`HTTP ${res.status}: ${body}`);
-      }
-
-      const data = await res.json();
-      saveSessionId(data.session_id);
-      saveLastResponse(data);
-      replaceBubble(loadingId, data.assistant_message || "(empty response)");
-
-      const history = [{ role: "assistant", text: data.assistant_message || "(empty response)" }];
-      saveHistory(history);
-
-      updateSidePanel(data);
-      renderRecommendation(data.recommendation);
-    } catch (err) {
-      replaceBubble(loadingId, `Failed to initialize chat. ${err.message}`);
-    } finally {
-      setSending(false);
-      chatInput.focus();
-    }
-  }
-  
-  async function sendMessage(message) {
-    const history = loadHistory();
-    history.push({ role: "user", text: message });
-    saveHistory(history);
-    appendBubble("user", message);
-  
-    const loadingId = `loading-${Date.now()}`;
-    appendBubble("assistant", "Thinking...", { id: loadingId, loading: true });
-    setSending(true);
-  
-    const payload = {
-      session_id: loadSessionId(),
-      message,
-      model_id: "qwen2.5-1.5b-instruct",
-      language_hint: getLanguageHint()
-    };
-  
-    try {
-      const res = await fetch(TURN_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-  
-      if (!res.ok) {
-        const body = await res.text();
-        throw new Error(`HTTP ${res.status}: ${body}`);
-      }
-  
-      const data = await res.json();
-      saveSessionId(data.session_id);
-      saveLastResponse(data);
-  
-      replaceBubble(loadingId, data.assistant_message || "(empty response)");
-  
-      history.push({ role: "assistant", text: data.assistant_message || "(empty response)" });
-      saveHistory(history);
-  
-      updateSidePanel(data);
-      renderRecommendation(data.recommendation);
-    } catch (err) {
-      replaceBubble(loadingId, `Request failed. ${err.message}`);
-    } finally {
-      setSending(false);
-      chatInput.focus();
-    }
-  }
-  
-  chatForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const msg = chatInput.value.trim();
-    if (!msg) return;
-    chatInput.value = "";
-    await sendMessage(msg);
-  });
-  
-  resetBtn.addEventListener("click", () => {
-    localStorage.removeItem(STORAGE_KEYS.sessionId);
-    localStorage.removeItem(STORAGE_KEYS.chatHistory);
-    localStorage.removeItem(STORAGE_KEYS.lastResponse);
-    recommendationArea.innerHTML = "";
-    renderHistory();
-    updateSidePanel({
-      state: "-",
-      task_mode: null,
-      next_item: null,
-      ready_for_recommendation: false,
-      detected_language: "-",
-      collected: {}
-    });
+function updateSidePanel(data) {
+  if (data.session_id) {
+    sessionBadge.textContent = `${data.session_id.slice(0, 8)}…`;
+  } else {
     sessionBadge.textContent = "No session";
-    initializeChat();
-  });
-
-  if (langSelect) {
-    langSelect.addEventListener("change", () => {
-      localStorage.setItem(STORAGE_KEYS.languagePreference, langSelect.value);
-    });
   }
-  
-  (function init() {
-    restoreLanguagePreference();
-    renderHistory();
-    const lastResponseRaw = localStorage.getItem(STORAGE_KEYS.lastResponse);
-    if (lastResponseRaw) {
-      try {
-        const data = JSON.parse(lastResponseRaw);
-        updateSidePanel(data);
-        renderRecommendation(data.recommendation);
-      } catch {
-        // ignore malformed cache
-      }
+  stateValue.textContent    = data.state      || "—";
+  taskModeValue.textContent = data.task_mode  || "—";
+  nextItemValue.textContent = data.next_item  || "—";
+  langValue.textContent     = data.detected_language || "—";
+
+  const ready = Boolean(data.ready_for_recommendation);
+  readyValue.textContent = String(ready);
+  readyValue.className   = `badge-pill ${ready ? "badge-ready" : "badge-pending"}`;
+
+  collectedJson.textContent = JSON.stringify(data.collected || {}, null, 2);
+}
+
+// ── Send state ───────────────────────────────────────────────────────────────
+
+function setSending(isSending) {
+  chatInput.disabled = isSending;
+  sendBtn.disabled   = isSending;
+}
+
+// ── Init chat ────────────────────────────────────────────────────────────────
+
+async function initializeChat() {
+  const existingHistory = loadHistory();
+  if (existingHistory.length > 0) return;
+
+  const loadingId = `loading-init-${Date.now()}`;
+  appendBubble("assistant", "Loading model…", { id: loadingId, loading: true });
+  setSending(true);
+
+  const payload = {
+    session_id:    loadSessionId(),
+    message:       "__INIT__",
+    model_id:      getModelId(),
+    language_hint: getLanguageHint()
+  };
+
+  try {
+    const warmupRes = await fetch(MODEL_LOAD_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model_id: getModelId() })
+    });
+    if (!warmupRes.ok) {
+      const body = await warmupRes.text();
+      throw new Error(`Model load failed (${warmupRes.status}): ${body}`);
     }
-    if (loadSessionId()) {
-      sessionBadge.textContent = `Session: ${loadSessionId().slice(0, 8)}...`;
+
+    updateLoadingBubbleText(loadingId, "Starting session…");
+
+    const res = await fetch(TURN_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(`HTTP ${res.status}: ${body}`);
     }
-    initializeChat();
-  })();
+
+    const data = await res.json();
+    saveSessionId(data.session_id);
+    saveLastResponse(data);
+
+    const assistantText = buildAssistantDialogueText(data);
+    replaceBubble(loadingId, assistantText, data.recommendation);
+
+    saveHistory([{ role: "assistant", text: assistantText, recommendation: data.recommendation || null }]);
+    updateSidePanel(data);
+  } catch (err) {
+    replaceBubble(loadingId, `Failed to initialise chat. ${err.message}`);
+  } finally {
+    setSending(false);
+    chatInput.focus();
+  }
+}
+
+// ── Send message ─────────────────────────────────────────────────────────────
+
+async function sendMessage(message) {
+  const history = loadHistory();
+  history.push({ role: "user", text: message });
+  saveHistory(history);
+  appendBubble("user", message);
+
+  const loadingId = `loading-${Date.now()}`;
+  appendBubble("assistant", "Thinking…", { id: loadingId, loading: true });
+  setSending(true);
+
+  const payload = {
+    session_id:    loadSessionId(),
+    message,
+    model_id:      getModelId(),
+    language_hint: getLanguageHint()
+  };
+
+  try {
+    const res = await fetch(TURN_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(`HTTP ${res.status}: ${body}`);
+    }
+
+    const data = await res.json();
+    saveSessionId(data.session_id);
+    saveLastResponse(data);
+
+    const assistantText = buildAssistantDialogueText(data);
+    replaceBubble(loadingId, assistantText, data.recommendation);
+
+    history.push({ role: "assistant", text: assistantText, recommendation: data.recommendation || null });
+    saveHistory(history);
+    updateSidePanel(data);
+  } catch (err) {
+    replaceBubble(loadingId, `Request failed. ${err.message}`);
+  } finally {
+    setSending(false);
+    chatInput.focus();
+  }
+}
+
+// ── Event listeners ──────────────────────────────────────────────────────────
+
+chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+  chatInput.value = "";
+  await sendMessage(msg);
+});
+
+resetBtn.addEventListener("click", () => {
+  localStorage.removeItem(STORAGE_KEYS.sessionId);
+  localStorage.removeItem(STORAGE_KEYS.chatHistory);
+  localStorage.removeItem(STORAGE_KEYS.lastResponse);
+  renderHistory();
+  updateSidePanel({
+    state: null,
+    task_mode: null,
+    next_item: null,
+    ready_for_recommendation: false,
+    detected_language: null,
+    collected: {}
+  });
+  sessionBadge.textContent = "No session";
+  initializeChat();
+});
+
+if (langSelect) {
+  langSelect.addEventListener("change", () => {
+    localStorage.setItem(STORAGE_KEYS.languagePreference, langSelect.value);
+  });
+}
+
+// ── Boot ─────────────────────────────────────────────────────────────────────
+
+(function init() {
+  restoreLanguagePreference();
+  renderHistory();
+  const lastResponseRaw = localStorage.getItem(STORAGE_KEYS.lastResponse);
+  if (lastResponseRaw) {
+    try { updateSidePanel(JSON.parse(lastResponseRaw)); } catch { /* ignore */ }
+  }
+  if (loadSessionId()) {
+    sessionBadge.textContent = `${loadSessionId().slice(0, 8)}…`;
+  }
+  initializeChat();
+})();

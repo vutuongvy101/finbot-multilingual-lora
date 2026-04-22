@@ -3,17 +3,31 @@ from __future__ import annotations
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 from finbot.session_store import InMemorySessionStore
-from finbot.schemas import ChatTurnRequest, ChatTurnResponse, LanguageCode, ChatState, TaskMode, ResponseMeta
+from finbot.schemas import (
+    ChatTurnRequest,
+    ChatTurnResponse,
+    LanguageCode,
+    ChatState,
+    TaskMode,
+    ResponseMeta,
+    ModelLoadRequest,
+    ModelLoadResponse,
+)
 from finbot.state_machine import handle_turn
 from finbot.policy_loader import load_policies
 from finbot.prompt_builder import build_recommendation_prompt
 from finbot.recommender import generate_recommendation
+from finbot.llm_adapter import preload_model
+from finbot.safety import redact_pii
+
+load_dotenv()
 
 app = FastAPI(title="Financial Chatbot API", version="0.1.0")
 
 store = InMemorySessionStore()
-app.state.policies = load_policies()
+app.state.policies = load_policies("src/policies")
 
 origins_env = os.getenv("FRONTEND_ORIGINS", "")
 allow_origins = (
@@ -42,6 +56,12 @@ def health() -> dict[str, str]:
     }
 
 
+@app.post("/model/load", response_model=ModelLoadResponse)
+def model_load(payload: ModelLoadRequest) -> ModelLoadResponse:
+    preload_model(payload.model_id)
+    return ModelLoadResponse(status="ok", model_id=payload.model_id)
+
+
 @app.post("/chat/turn", response_model=ChatTurnResponse)
 def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
     # choose a language fallback only for new session creation
@@ -59,15 +79,20 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
     recommendation = None
 
     if result.state == ChatState.RECOMMENDING and result.ready_for_recommendation and result.task_mode is not None:
+        collected = result.session.get("collected", {})
+        prompt_collected = dict(collected)
+        if "GOAL" in prompt_collected:
+            prompt_collected["GOAL"] = redact_pii(str(prompt_collected["GOAL"]))
         recommendation = generate_recommendation(
             prompt=build_recommendation_prompt(
                 task_mode=TaskMode(result.task_mode),
                 language=LanguageCode(result.detected_language),
-                collected=result.session.get("collected", {}),
+                collected=prompt_collected,
                 unknown_fields=result.session.get("unknown_fields", []),
+                policies=app.state.policies,
             ),
             model_id=payload.model_id,
-            collected=result.session.get("collected", {}),
+            collected=prompt_collected,
             unknown_fields=result.session.get("unknown_fields", []),
         )
         

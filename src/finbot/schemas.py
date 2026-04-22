@@ -34,6 +34,20 @@ class ErrorResponse(BaseModel):
     error: ErrorPayload
 
 
+class ModelLoadRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    model_id: str = Field(
+        default="Qwen/Qwen2.5-1.5B-Instruct",
+        description="Serving model identifier to preload.",
+    )
+
+
+class ModelLoadResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    status: str
+    model_id: str
+
+
 class ChatTurnRequest(BaseModel):
     """
     Request contract for POST /chat/turn.
@@ -51,7 +65,7 @@ class ChatTurnRequest(BaseModel):
         description="Raw user message for this turn.",
     )
     model_id: str = Field(
-        default="qwen2.5-1.5b-instruct",
+        default="Qwen/Qwen2.5-1.5B-Instruct",
         description="Serving model identifier.",
     )
     language_hint: LanguageCode | None = Field(
