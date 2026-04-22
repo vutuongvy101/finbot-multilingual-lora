@@ -4,9 +4,11 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from finbot.session_store import InMemorySessionStore
-from finbot.schemas import ChatTurnRequest, ChatTurnResponse, LanguageCode
+from finbot.schemas import ChatTurnRequest, ChatTurnResponse, LanguageCode, ChatState, TaskMode, ResponseMeta
 from finbot.state_machine import handle_turn
 from finbot.policy_loader import load_policies
+from finbot.prompt_builder import build_recommendation_prompt
+from finbot.recommender import generate_recommendation
 
 app = FastAPI(title="Financial Chatbot API", version="0.1.0")
 
@@ -53,7 +55,24 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
         language = seed_language
     )
     result = handle_turn(payload, session)
+    
+    recommendation = None
+
+    if result.state == ChatState.RECOMMENDING and result.ready_for_recommendation and result.task_mode is not None:
+        recommendation = generate_recommendation(
+            prompt=build_recommendation_prompt(
+                task_mode=TaskMode(result.task_mode),
+                language=LanguageCode(result.detected_language),
+                collected=result.session.get("collected", {}),
+                unknown_fields=result.session.get("unknown_fields", []),
+            ),
+            model_id=payload.model_id,
+            collected=result.session.get("collected", {}),
+            unknown_fields=result.session.get("unknown_fields", []),
+        )
+        
     store.save(session_id, result.session)
+    
     return ChatTurnResponse(
         session_id=session_id,
         state=result.state,
@@ -64,6 +83,10 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
         collected=result.session.get("collected", {}),
         unknown_fields=result.session.get("unknown_fields", []),
         ready_for_recommendation=result.ready_for_recommendation,
-        recommendation=None,
-        meta=result.meta,
+        recommendation=recommendation,
+        meta=ResponseMeta(
+            used_rag=False,  # TODO: no RAG yet
+            model_id=result.meta.model_id,
+            latency_ms=result.meta.latency_ms,
+        ),
     )
