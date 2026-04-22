@@ -29,7 +29,7 @@ def preload_model(model_id: str) -> None:
     _get_generator(model_id)
 
 
-def generate(prompt: str, model_id: str, max_new_tokens: int = 320) -> str:
+def generate(prompt: str, model_id: str, max_new_tokens: int = 800) -> str:
     gen = _get_generator(model_id)
     out = gen(prompt, max_new_tokens=max_new_tokens, do_sample=False)
     return out[0]["generated_text"]

@@ -85,7 +85,7 @@ class RecommendationPayload(BaseModel):
     recommendation: str
     reasoning: str
     risks_caveats: str
-    sources: list[str] = Field(default_factory=list)
+    sources: list[str] = Field(default_factory=list) 
     disclaimer: str
 
 

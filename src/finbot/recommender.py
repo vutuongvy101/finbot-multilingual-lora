@@ -13,6 +13,49 @@ def _extract_json(text: str) -> str | None:
     return text[s:e + 1]
 
 
+def _parse_payload(raw: object) -> RecommendationPayload | None:
+    # Some adapters return structured JSON (dict), others return text.
+    if isinstance(raw, dict):
+        try:
+            return RecommendationPayload.model_validate(raw)
+        except Exception:
+            return None
+
+    if not isinstance(raw, str):
+        return None
+
+    # Fast path for valid JSON strings.
+    try:
+        return RecommendationPayload.model_validate_json(raw)
+    except Exception:
+        pass
+
+    # Fallback path for text that may contain one or more JSON objects.
+    dec = json.JSONDecoder()
+    i = 0
+    while i < len(raw):
+        if raw[i] != "{":
+            i += 1
+            continue
+        try:
+            obj, _end = dec.raw_decode(raw[i:])
+            if isinstance(obj, dict):
+                return RecommendationPayload.model_validate(obj)
+        except Exception:
+            pass
+        i += 1
+
+    # Last attempt: greedy extraction for legacy cases.
+    blob = _extract_json(raw)
+    if blob:
+        try:
+            return RecommendationPayload.model_validate_json(blob)
+        except Exception:
+            pass
+
+    return None
+
+
 def _fallback(collected: dict[str, str], unknown_fields: list[str]) -> RecommendationPayload:
     return RecommendationPayload(
         profile_summary=_natural_profile_summary(collected),
@@ -64,27 +107,22 @@ def _looks_machine_like(summary: str) -> bool:
 
 def generate_recommendation(prompt: str, model_id: str, collected: dict[str, str], unknown_fields: list[str]) -> RecommendationPayload:
     raw = generate(prompt, model_id)
-    blob = _extract_json(raw)
-    if blob:
-        try:
-            parsed = RecommendationPayload.model_validate_json(blob)
-            if _looks_machine_like(parsed.profile_summary):
-                parsed.profile_summary = _natural_profile_summary(collected)
-            return parsed
-        except Exception:
-            pass
+    
+    print(f"\n\n=== Raw Answer ===\n {raw}\n\n")
+
+    parsed = _parse_payload(raw)
+    if parsed:
+        if _looks_machine_like(parsed.profile_summary):
+            parsed.profile_summary = _natural_profile_summary(collected)
+        return parsed
 
     # single repair retry
     repair_prompt = prompt + "\n\nYour previous answer was invalid. Return ONLY valid JSON."
     raw2 = generate(repair_prompt, model_id)
-    blob2 = _extract_json(raw2)
-    if blob2:
-        try:
-            parsed = RecommendationPayload.model_validate_json(blob2)
-            if _looks_machine_like(parsed.profile_summary):
-                parsed.profile_summary = _natural_profile_summary(collected)
-            return parsed
-        except Exception:
-            pass
+    parsed2 = _parse_payload(raw2)
+    if parsed2:
+        if _looks_machine_like(parsed2.profile_summary):
+            parsed2.profile_summary = _natural_profile_summary(collected)
+        return parsed2
 
     return _fallback(collected, unknown_fields)
