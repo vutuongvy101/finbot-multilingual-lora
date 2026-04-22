@@ -39,7 +39,7 @@ class ChatTurnRequest(BaseModel):
     Request contract for POST /chat/turn.
     """
 
-    model_config = ConfigDict(extra="forbid", use_enum_values=True)
+    model_config = ConfigDict(extra="forbid")
 
     session_id: str | None = Field(
         default=None,

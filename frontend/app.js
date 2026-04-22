@@ -1,7 +1,8 @@
 const STORAGE_KEYS = {
     sessionId: "finbot.session_id",
     chatHistory: "finbot.chat_history",
-    lastResponse: "finbot.last_response"
+    lastResponse: "finbot.last_response",
+    languagePreference: "finbot.language_preference"
   };
   
   const API_BASE = window.APP_API_BASE || "http://127.0.0.1:8000";
@@ -13,6 +14,7 @@ const STORAGE_KEYS = {
   const sendBtn = document.getElementById("sendBtn");
   const resetBtn = document.getElementById("resetBtn");
   const recommendationArea = document.getElementById("recommendationArea");
+  const langSelect = document.getElementById("langSelect");
   
   const sessionBadge = document.getElementById("sessionBadge");
   const apiBaseLabel = document.getElementById("apiBaseLabel");
@@ -48,12 +50,17 @@ const STORAGE_KEYS = {
   function saveLastResponse(data) {
     localStorage.setItem(STORAGE_KEYS.lastResponse, JSON.stringify(data));
   }
-  
-  function detectLanguageHint() {
-    const lang = (navigator.language || "en").toLowerCase();
-    if (lang.startsWith("vi")) return "vi";
-    if (lang.startsWith("zh")) return "zh";
-    return "en";
+
+  function getLanguageHint() {
+    return langSelect?.value || "en";
+  }
+
+  function restoreLanguagePreference() {
+    const saved = localStorage.getItem(STORAGE_KEYS.languagePreference);
+    if (!saved || !langSelect) return;
+    if (["en", "vi", "zh"].includes(saved)) {
+      langSelect.value = saved;
+    }
   }
   
   function appendBubble(role, text, { id = null, loading = false } = {}) {
@@ -133,6 +140,51 @@ const STORAGE_KEYS = {
     chatInput.disabled = isSending;
     sendBtn.disabled = isSending;
   }
+
+  async function initializeChat() {
+    const existingHistory = loadHistory();
+    if (existingHistory.length > 0) return;
+
+    const loadingId = `loading-init-${Date.now()}`;
+    appendBubble("assistant", "Starting chat...", { id: loadingId, loading: true });
+    setSending(true);
+
+    const payload = {
+      session_id: loadSessionId(),
+      message: "__INIT__",
+      model_id: "qwen2.5-1.5b-instruct",
+      language_hint: getLanguageHint()
+    };
+
+    try {
+      const res = await fetch(TURN_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        const body = await res.text();
+        throw new Error(`HTTP ${res.status}: ${body}`);
+      }
+
+      const data = await res.json();
+      saveSessionId(data.session_id);
+      saveLastResponse(data);
+      replaceBubble(loadingId, data.assistant_message || "(empty response)");
+
+      const history = [{ role: "assistant", text: data.assistant_message || "(empty response)" }];
+      saveHistory(history);
+
+      updateSidePanel(data);
+      renderRecommendation(data.recommendation);
+    } catch (err) {
+      replaceBubble(loadingId, `Failed to initialize chat. ${err.message}`);
+    } finally {
+      setSending(false);
+      chatInput.focus();
+    }
+  }
   
   async function sendMessage(message) {
     const history = loadHistory();
@@ -148,7 +200,7 @@ const STORAGE_KEYS = {
       session_id: loadSessionId(),
       message,
       model_id: "qwen2.5-1.5b-instruct",
-      language_hint: detectLanguageHint()
+      language_hint: getLanguageHint()
     };
   
     try {
@@ -205,9 +257,17 @@ const STORAGE_KEYS = {
       collected: {}
     });
     sessionBadge.textContent = "No session";
+    initializeChat();
   });
+
+  if (langSelect) {
+    langSelect.addEventListener("change", () => {
+      localStorage.setItem(STORAGE_KEYS.languagePreference, langSelect.value);
+    });
+  }
   
   (function init() {
+    restoreLanguagePreference();
     renderHistory();
     const lastResponseRaw = localStorage.getItem(STORAGE_KEYS.lastResponse);
     if (lastResponseRaw) {
@@ -222,4 +282,5 @@ const STORAGE_KEYS = {
     if (loadSessionId()) {
       sessionBadge.textContent = `Session: ${loadSessionId().slice(0, 8)}...`;
     }
+    initializeChat();
   })();

@@ -12,7 +12,7 @@
     body { background: #f8f9fa; }
     .app-shell { height: 100vh; }
     .chat-scroll { height: calc(100vh - 210px); overflow-y: auto; }
-    .bubble { max-width: 80%; padding: 10px 14px; border-radius: 12px; margin-bottom: 10px; white-space: pre-wrap; }
+    .bubble { max-width: 80%; width: fit-content; padding: 10px 14px; border-radius: 12px; margin-bottom: 10px; white-space: pre-wrap; }
     .bubble-user { margin-left: auto; background: #0d6efd; color: white; }
     .bubble-assistant { margin-right: auto; background: #e9ecef; color: #212529; }
     .recommendation-card { border-left: 4px solid #198754; }
@@ -27,7 +27,14 @@
         <div class="card shadow-sm flex-grow-1">
           <div class="card-header d-flex justify-content-between align-items-center">
             <strong>Financial Chatbot</strong>
-            <span id="sessionBadge" class="badge text-bg-secondary">No session</span>
+            <div class="d-flex align-items-center gap-2">
+              <select id="langSelect" class="form-select form-select-sm" style="width: 160px;">
+                <option value="en" selected>English</option>
+                <option value="vi">Vietnamese</option>
+                <option value="zh">Chinese</option>
+              </select>
+              <span id="sessionBadge" class="badge text-bg-secondary">No session</span>
+            </div>
           </div>
           <div id="chatList" class="card-body chat-scroll"></div>
           <div class="card-footer">
