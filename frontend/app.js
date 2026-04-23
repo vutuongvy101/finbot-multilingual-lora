@@ -9,6 +9,16 @@ const API_BASE = window.APP_API_BASE || "http://127.0.0.1:8000";
 const TURN_URL = `${API_BASE}/chat/turn`;
 const MODEL_LOAD_URL = `${API_BASE}/model/load`;
 
+const THINKING_STEP_MS = 1200;
+const THINKING_STEPS = [
+  "Reading your message…",
+  "Applying policy rules…",
+  "Preparing response…"
+];
+
+/** @type {Map<string, ReturnType<typeof setInterval>>} */
+const thinkingTimers = new Map();
+
 const chatList      = document.getElementById("chatList");
 const chatForm      = document.getElementById("chatForm");
 const chatInput     = document.getElementById("chatInput");
@@ -82,6 +92,37 @@ function userAvatarHtml() {
 
 // ── Bubble rendering ─────────────────────────────────────────────────────────
 
+function stopThinkingLabel(id) {
+  const timer = thinkingTimers.get(id);
+  if (timer !== undefined) {
+    clearInterval(timer);
+    thinkingTimers.delete(id);
+  }
+}
+
+function startThinkingLabel(id) {
+  stopThinkingLabel(id);
+  let stepIndex = 0;
+
+  const tick = () => {
+    const row = chatList.querySelector(`[data-id="${id}"]`);
+    if (!row) {
+      stopThinkingLabel(id);
+      return;
+    }
+    const label = row.querySelector(".loading-label");
+    if (!label) {
+      stopThinkingLabel(id);
+      return;
+    }
+    updateLoadingBubbleText(id, THINKING_STEPS[stepIndex % THINKING_STEPS.length]);
+    stepIndex += 1;
+  };
+
+  tick();
+  thinkingTimers.set(id, setInterval(tick, THINKING_STEP_MS));
+}
+
 function appendBubble(role, text, { id = null, loading = false, recommendation = null } = {}) {
   const isUser = role === "user";
   const row = document.createElement("div");
@@ -113,6 +154,7 @@ function appendBubble(role, text, { id = null, loading = false, recommendation =
 }
 
 function replaceBubble(id, text, recommendation = null) {
+  stopThinkingLabel(id);
   const row = chatList.querySelector(`[data-id="${id}"]`);
   if (!row) return;
   const bubble = row.querySelector(".bubble");
@@ -239,6 +281,7 @@ async function initializeChat() {
 
   const loadingId = `loading-init-${Date.now()}`;
   appendBubble("assistant", "Loading model…", { id: loadingId, loading: true });
+  startThinkingLabel(loadingId);
   setSending(true);
 
   const payload = {
@@ -259,16 +302,16 @@ async function initializeChat() {
       throw new Error(`Model load failed (${warmupRes.status}): ${body}`);
     }
 
-    updateLoadingBubbleText(loadingId, "Starting session…");
-
     const res = await fetch(TURN_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
     if (!res.ok) {
-      const body = await res.text();
-      throw new Error(`HTTP ${res.status}: ${body}`);
+      let errorMsg = `HTTP ${res.status}`;
+      try { const body = await res.json(); errorMsg = body?.error?.message || errorMsg; }
+      catch { errorMsg = (await res.text()) || errorMsg; }
+      throw new Error(errorMsg);
     }
 
     const data = await res.json();
@@ -298,6 +341,7 @@ async function sendMessage(message) {
 
   const loadingId = `loading-${Date.now()}`;
   appendBubble("assistant", "Thinking…", { id: loadingId, loading: true });
+  startThinkingLabel(loadingId);
   setSending(true);
 
   const payload = {
@@ -314,8 +358,10 @@ async function sendMessage(message) {
       body: JSON.stringify(payload)
     });
     if (!res.ok) {
-      const body = await res.text();
-      throw new Error(`HTTP ${res.status}: ${body}`);
+      let errorMsg = `HTTP ${res.status}`;
+      try { const body = await res.json(); errorMsg = body?.error?.message || errorMsg; }
+      catch { errorMsg = (await res.text()) || errorMsg; }
+      throw new Error(errorMsg);
     }
 
     const data = await res.json();
