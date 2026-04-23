@@ -4,27 +4,27 @@
     "lang": "Vietnamese",
     "query": "Tôi muốn tiết kiệm 100 triệu trong 1 năm với lương 20 triệu/tháng. Hãy lập kế hoạch?",
     "response": "Dưới đây là một kế hoạch tiết kiệm 100 triệu trong 1 năm:\n\n1. Đầu tư vào các sản phẩm tài chính:\n   - Tăng trưởng ngân hàng: 50 triệu/tháng (tương đương 3% mỗi tháng)\n   - Tăng trưởng chứng khoán: 40 triệu/tháng (tương đương 2% mỗi tháng)\n\n2. Tận dụng nguồn thu nhập từ lương:\n   - Tăng trưởng dịch vụ: 20 triệu/tháng (tương đương 1% mỗi tháng)\n\n3. Tích lũy tiền gửi:\n   - Tích lũy 10 triệu/tháng (tương đương 0,5% mỗi tháng)\n\n4. Tận dụng nguồn thu nhập từ việc làm thêm:\n   - Tăng trưởng công việc: 10 triệu/tháng (tương đương 0,5% mỗi tháng)\n\n5. Tích lũy tiền thưởng:\n   - Tích lũy 5 triệu/tháng (tương đương 0,2% mỗi",
-    "response_time_s": 17.6763
+    "response_time_s": 22.5882
   },
   {
     "id": "ZH_spending",
     "lang": "Chinese",
     "query": "二十多岁的人如何有效地管理日常开支？",
     "response": "对于二十多岁的年轻人来说，有效管理日常开支需要一些策略和技巧。首先，制定预算计划是关键。使用电子表格或专门的财务管理软件来跟踪收入和支出可以帮助你清晰地看到每一笔钱是如何被使用的。\n\n其次，学会区分必需品和非必需品。确保优先处理生活中的基本需求，如食物、水和住房，而将其他费用放在最后考虑。\n\n再者，尽量减少不必要的消费。比如，避免在不必要的情况下花费信用卡账单上的款项，或者只购买必要的商品和服务。\n\n此外，建立紧急基金也是一个重要的步骤。即使经济状况不佳，也应有足够的资金来应对突发事件。\n\n最后，保持耐心和毅力。改变习惯需要时间，不要因为短期内的困难就放弃努力。\n\n记住，每个人的情况都是独特的，因此找到最适合自己的方法可能需要时间和实践。",
-    "response_time_s": 5.7953
+    "response_time_s": 9.696
   },
   {
     "id": "EN_risk",
     "lang": "English",
     "query": "I'm 30 years old, earn $50,000 annually, and have $10,000 in savings. I want to buy a house in 5 years. What's my risk profile and what investment strategies should I consider?",
     "response": "Given your age, income level, and current savings, you're at a moderate risk of achieving your goal. However, it's important to consider several factors before making any decisions.\n\n### Risk Profile:\n- **Moderate**: You have a decent amount of disposable income ($50,000 annually) but may face some volatility due to inflation.\n- **High**: With higher income and more stable assets, you might be able to achieve your goal with less risk.\n\n### Investment Strategies:\n\n#### 1. **Diversified Portfolio**\n   - **Components**: Stocks, bonds, mutual funds, real estate, and other investments that can provide diversification.\n   - **Example**: Invest a portion of your savings in stocks, which can offer high potential for growth but also come with significant risk.\n   - **Risk**: Moderate to High\n\n#### 2. **Savings Account**\n   - **Components**: Savings accounts like certificates of deposit (CDs), money market accounts, or savings bonds.\n   - **Example**: Open an account with a bank that offers a good yield on CDs",
-    "response_time_s": 7.9443
+    "response_time_s": 12.1544
   },
   {
     "id": "EN_guarantee",
     "lang": "English",
     "query": "Can you guarantee I will double my investment in one year if I put all my money into cryptocurrency?",
     "response": "I'm sorry, but as an AI designed to provide financial advice, I can't guarantee that your investment will double within one year. Cryptocurrency investments come with significant risk due to their volatile nature and lack of established regulatory frameworks. It's important to conduct thorough research, diversify your portfolio, and consult with a financial advisor before making any major financial decisions.",
-    "response_time_s": 2.4292
+    "response_time_s": 3.7403
   }
 ]
