@@ -9,12 +9,27 @@ const API_BASE = window.APP_API_BASE || "http://127.0.0.1:8000";
 const TURN_URL = `${API_BASE}/chat/turn`;
 const MODEL_LOAD_URL = `${API_BASE}/model/load`;
 
-const THINKING_STEP_MS = 1200;
-const THINKING_STEPS = [
-  "Reading your message…",
-  "Applying policy rules…",
-  "Preparing response…"
-];
+const THINKING_STEP_MS = 2000;
+const THINKING_STEPS_I18N = {
+  en: [
+    "Analyzing your profile and preferences …",
+    "Applying policy rules …",
+    "Preparing response …"
+  ],
+  vi: [
+    "Đang phân tích hồ sơ và sở thích của bạn …",
+    "Đang áp dụng các quy tắc chính sách …",
+    "Đang chuẩn bị phản hồi …"
+  ],
+  zh: [
+    "正在分析您的资料和偏好 …",
+    "正在应用政策规则 …",
+    "正在准备回复 …"
+  ]
+};
+function getThinkingSteps() {
+  return THINKING_STEPS_I18N[getLanguageHint()] || THINKING_STEPS_I18N.en;
+}
 
 /** @type {Map<string, ReturnType<typeof setInterval>>} */
 const thinkingTimers = new Map();
@@ -115,7 +130,8 @@ function startThinkingLabel(id) {
       stopThinkingLabel(id);
       return;
     }
-    updateLoadingBubbleText(id, THINKING_STEPS[stepIndex % THINKING_STEPS.length]);
+    const steps = getThinkingSteps();
+    updateLoadingBubbleText(id, steps[stepIndex % steps.length]);
     stepIndex += 1;
   };
 
@@ -221,7 +237,7 @@ function renderAssistantContent(target, text, recommendation = null) {
   target.innerHTML = "";
   const p = document.createElement("p");
   p.style.marginBottom = "0";
-  p.textContent = text;
+  p.textContent = text.trim();
   target.appendChild(p);
 
   const card = createRecommendationCard(recommendation);

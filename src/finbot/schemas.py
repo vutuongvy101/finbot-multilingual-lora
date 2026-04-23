@@ -10,6 +10,17 @@ class LanguageCode(str, Enum):
     EN = "en"
     VI = "vi"
     ZH = "zh"
+    
+    def get_name(self) -> str:
+        match self:
+            case LanguageCode.EN:
+                return "English"
+            case LanguageCode.VI:
+                return "Vietnamese"
+            case LanguageCode.ZH:
+                return "Chinese"
+            case _:
+                return "Unknown"
 
 
 class ChatState(str, Enum):

@@ -19,7 +19,7 @@ from finbot.schemas import (
 )
 from finbot.state_machine import handle_turn
 from finbot.policy_loader import load_policies
-from finbot.prompt_builder import build_recommendation_prompt
+from finbot.prompt_builder import build_recommendation_messages
 from finbot.recommender import generate_recommendation
 from finbot.llm_adapter import preload_model
 from finbot.safety import redact_pii
@@ -104,12 +104,11 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
         if "GOAL" in prompt_collected:
             prompt_collected["GOAL"] = redact_pii(str(prompt_collected["GOAL"]))
         recommendation = generate_recommendation(
-            prompt=build_recommendation_prompt(
+            messages=build_recommendation_messages(
                 task_mode=TaskMode(result.task_mode),
-                language=LanguageCode(result.detected_language),
+                lang_code=LanguageCode(result.detected_language),
                 collected=prompt_collected,
                 unknown_fields=result.session.get("unknown_fields", []),
-                policies=app.state.policies,
             ),
             model_id=payload.model_id,
             lang=result.detected_language,
