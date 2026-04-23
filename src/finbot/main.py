@@ -30,6 +30,9 @@ import os
 load_dotenv()
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+adapter_path = os.getenv("FINBOT_ADAPTER_PATH")
+base_model = os.getenv("FINBOT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
+
 
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL, logging.INFO),
@@ -78,7 +81,7 @@ def health() -> dict[str, str]:
 
 @app.post("/model/load", response_model=ModelLoadResponse)
 def model_load(payload: ModelLoadRequest) -> ModelLoadResponse:
-    preload_model(payload.model_id)
+    preload_model(payload.model_id, adapter_path)
     return ModelLoadResponse(status="ok", model_id=payload.model_id)
 
 
@@ -112,6 +115,7 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
             ),
             model_id=payload.model_id,
             lang=result.detected_language,
+            adapter_path=adapter_path,
         )
         
     store.save(session_id, result.session)

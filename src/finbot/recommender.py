@@ -71,9 +71,9 @@ def _parse_payload(raw: object) -> tuple[RecommendationPayload | None, str | Non
 
 
 def generate_recommendation(
-    messages: list[dict], model_id: str, lang: str
+    messages: list[dict], model_id: str, lang: str, adapter_path: str = None,
 ) -> RecommendationPayload:
-    raw = generate_chat(messages, model_id)
+    raw = generate_chat(messages, model_id, adapter_path)
     logger.info("Raw LLM answer: %s", raw)
 
     parsed, err = _parse_payload(raw)
@@ -94,7 +94,7 @@ def generate_recommendation(
             ),
         },
     ]
-    raw2 = generate_chat(repair_messages, model_id)
+    raw2 = generate_chat(repair_messages, model_id, adapter_path)
     logger.info("Raw LLM repair answer: %s", raw2)
 
     parsed2, _ = _parse_payload(raw2)

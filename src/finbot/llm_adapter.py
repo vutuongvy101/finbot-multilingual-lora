@@ -3,34 +3,52 @@ from __future__ import annotations
 import os
 from functools import lru_cache
 
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from peft import PeftModel
 
 
 @lru_cache(maxsize=3)
-def _get_generator(model_id: str):
+def _get_generator(model_id: str, adapter_path: str | None = None):
     hf_token = os.getenv("HF_TOKEN") or None
     _cache_dir = os.getenv("HF_CACHE_DIR") or None
     cache_dir = os.path.expanduser(_cache_dir) if _cache_dir else None
     local_files_only = os.getenv("HF_LOCAL_FILES_ONLY", "1").strip().lower() in {"1", "true", "yes", "on"}
 
+    # M2 MacBook optimizations
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    torch_dtype = torch.float16 if device == "mps" else torch.float32
+
     load_kwargs = {
         "token": hf_token,
         "local_files_only": local_files_only,
+        "torch_dtype": torch_dtype,
+        "trust_remote_code": True,
         **({"cache_dir": cache_dir} if cache_dir else {}),
     }
-
+    
     tokenizer = AutoTokenizer.from_pretrained(model_id, **load_kwargs)
-    model = AutoModelForCausalLM.from_pretrained(model_id, **load_kwargs)
+
+
+    # Load base model
+    model = AutoModelForCausalLM.from_pretrained(model_id, **load_kwargs).to(device)
+    
+    # Load LoRA adapter if provided
+    if adapter_path and os.path.exists(adapter_path):
+        model = PeftModel.from_pretrained(model, adapter_path, torch_dtype=torch_dtype)
+        print(f"Using fine-tuned model: {adapter_path}")
+    else:
+        print(f"Using base model: {model_id}")
 
     return pipeline("text-generation", model=model, tokenizer=tokenizer)
 
 
-def preload_model(model_id: str) -> None:
-    _get_generator(model_id)
+def preload_model(model_id: str, adapter_path: str = None) -> None:
+    _get_generator(model_id, adapter_path)
 
 
-def generate_chat(messages: list[dict], model_id: str, max_new_tokens: int = 1024) -> str:
-    gen = _get_generator(model_id)
+def generate_chat(messages: list[dict], model_id: str, adapter_path: str = None, max_new_tokens: int = 1024) -> str:
+    gen = _get_generator(model_id, adapter_path)
     tokenizer = gen.tokenizer
     model = gen.model
 
