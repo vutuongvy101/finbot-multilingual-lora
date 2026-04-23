@@ -1,7 +1,9 @@
 .DS_Store
-*.md
+# *.md
 notebooks/data/finbot_env/
 __pycache__/
 financialbot.egg-info/
 .venv/
 .env
+.txt
+00000/
