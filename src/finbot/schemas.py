@@ -34,6 +34,12 @@ class ErrorResponse(BaseModel):
     error: ErrorPayload
 
 
+class RecommendationError(Exception):
+    def __init__(self, message: str) -> None:
+        self.message = message
+        super().__init__(message)
+
+
 class ModelLoadRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     model_id: str = Field(

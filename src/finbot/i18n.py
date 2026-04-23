@@ -77,6 +77,13 @@ READY_MESSAGE_TEMPLATE: dict[str, str] = {
 }
 
 
+RECOMMENDATION_FAILED: dict[str, str] = {
+    EN: "Sorry, I was unable to generate a recommendation at this time. Please try again.",
+    VI: "Xin lỗi, tôi không thể tạo khuyến nghị lúc này. Vui lòng thử lại.",
+    ZH: "抱歉，目前无法生成建议，请稍后重试。",
+}
+
+
 def t(lookup: dict[str, str], lang: str) -> str:
     """Return text for lang, fall back to EN."""
     return lookup.get(lang) or lookup.get(EN, "")

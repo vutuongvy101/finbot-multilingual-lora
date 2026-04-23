@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from finbot.session_store import InMemorySessionStore
 from finbot.schemas import (
@@ -14,6 +15,7 @@ from finbot.schemas import (
     ResponseMeta,
     ModelLoadRequest,
     ModelLoadResponse,
+    RecommendationError,
 )
 from finbot.state_machine import handle_turn
 from finbot.policy_loader import load_policies
@@ -22,9 +24,27 @@ from finbot.recommender import generate_recommendation
 from finbot.llm_adapter import preload_model
 from finbot.safety import redact_pii
 
+import logging
+import os
+
 load_dotenv()
 
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+
+logging.basicConfig(
+    level=getattr(logging, LOG_LEVEL, logging.INFO),
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+)
+
 app = FastAPI(title="Financial Chatbot API", version="0.1.0")
+
+
+@app.exception_handler(RecommendationError)
+def recommendation_error_handler(request: Request, exc: RecommendationError) -> JSONResponse:
+    return JSONResponse(
+        status_code=422,
+        content={"error": {"code": "RECOMMENDATION_FAILED", "message": exc.message, "details": {}}},
+    )
 
 store = InMemorySessionStore()
 app.state.policies = load_policies("src/policies")
@@ -92,8 +112,7 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
                 policies=app.state.policies,
             ),
             model_id=payload.model_id,
-            collected=prompt_collected,
-            unknown_fields=result.session.get("unknown_fields", []),
+            lang=result.detected_language,
         )
         
     store.save(session_id, result.session)
