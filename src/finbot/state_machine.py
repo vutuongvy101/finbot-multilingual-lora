@@ -14,7 +14,7 @@ from finbot.i18n import (
     ready_message,
 )
 from finbot.parsers import parse_task_mode, is_unknown_answer, validate_field_answer
-from finbot.safety import redact_pii
+from finbot.safety import sanitize_untrusted_text
 
 
 @dataclass
@@ -103,7 +103,7 @@ def handle_turn(payload: ChatTurnRequest, session: dict[str, object]) -> TurnRes
                            ChatState.ASKING, mode.value,
                            field_question(current_field, lang.value), current_field, False)
         if current_field == "GOAL":
-            normalized = redact_pii(normalized or "")
+            normalized = sanitize_untrusted_text(normalized or "")
         collected[current_field] = normalized  # type: ignore[assignment]
         clarify_count.pop(current_field, None)
 

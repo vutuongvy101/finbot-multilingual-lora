@@ -12,6 +12,7 @@ from finbot.schemas import RecommendationError, RecommendationPayload
 logger = logging.getLogger(__name__)
 
 _MAX_ERROR_CHARS = 200
+_MAX_LOG_CHARS = 500
 
 
 def _extract_json(text: str) -> str | None:
@@ -20,6 +21,36 @@ def _extract_json(text: str) -> str | None:
     if s == -1 or e == -1 or e <= s:
         return None
     return text[s:e + 1]
+
+
+def _contains_meta_instruction(text: str) -> bool:
+    lowered = text.lower()
+    markers = (
+        "system prompt",
+        "developer prompt",
+        "ignore previous instructions",
+        "hidden instructions",
+        "chain of thought",
+        "hướng dẫn hệ thống",
+        "chỉ dẫn ẩn",
+        "bỏ qua hướng dẫn",
+        "系统提示词",
+        "开发者提示词",
+        "隐藏指令",
+    )
+    return any(marker in lowered for marker in markers)
+
+
+def _payload_has_meta_instruction(payload: RecommendationPayload) -> bool:
+    sections = (
+        payload.profile_summary,
+        payload.recommendation,
+        payload.reasoning,
+        payload.risks_caveats,
+        payload.disclaimer,
+        " ".join(payload.sources),
+    )
+    return any(_contains_meta_instruction(section) for section in sections)
 
 
 def _parse_payload(raw: object) -> tuple[RecommendationPayload | None, str | None]:
@@ -74,10 +105,10 @@ def generate_recommendation(
     messages: list[dict], model_id: str, lang: str, adapter_path: str = None,
 ) -> RecommendationPayload:
     raw = generate_chat(messages, model_id, adapter_path)
-    logger.info("Raw LLM answer: %s", raw)
+    logger.info("Raw LLM answer (truncated): %s", raw[:_MAX_LOG_CHARS])
 
     parsed, err = _parse_payload(raw)
-    if parsed:
+    if parsed and not _payload_has_meta_instruction(parsed):
         return parsed
 
     truncated = (err or "Invalid JSON.")[:_MAX_ERROR_CHARS]
@@ -95,10 +126,10 @@ def generate_recommendation(
         },
     ]
     raw2 = generate_chat(repair_messages, model_id, adapter_path)
-    logger.info("Raw LLM repair answer: %s", raw2)
+    logger.info("Raw LLM repair answer (truncated): %s", raw2[:_MAX_LOG_CHARS])
 
     parsed2, _ = _parse_payload(raw2)
-    if parsed2:
+    if parsed2 and not _payload_has_meta_instruction(parsed2):
         return parsed2
 
     raise RecommendationError(t(RECOMMENDATION_FAILED, lang))

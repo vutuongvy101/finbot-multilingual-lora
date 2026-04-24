@@ -22,7 +22,7 @@ from finbot.policy_loader import load_policies
 from finbot.prompt_builder import build_recommendation_messages
 from finbot.recommender import generate_recommendation
 from finbot.llm_adapter import preload_model
-from finbot.safety import redact_pii
+from finbot.safety import sanitize_untrusted_text
 
 import logging
 import os
@@ -104,8 +104,8 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
     if result.state == ChatState.RECOMMENDING and result.ready_for_recommendation and result.task_mode is not None:
         collected = result.session.get("collected", {})
         prompt_collected = dict(collected)
-        if "GOAL" in prompt_collected:
-            prompt_collected["GOAL"] = redact_pii(str(prompt_collected["GOAL"]))
+        for key, value in prompt_collected.items():
+            prompt_collected[key] = sanitize_untrusted_text(str(value))
         recommendation = generate_recommendation(
             messages=build_recommendation_messages(
                 task_mode=TaskMode(result.task_mode),
