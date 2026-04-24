@@ -63,13 +63,37 @@ Visit `http://localhost:5500` to use the financial assistant.
 
 ```
 finbot/
-├── src/finbot/           # Core backend modules
-│   ├── dialogue/         # State machine and parsers  
-│   ├── recommendation/   # LLM adapter and validation
-│   └── main.py          # FastAPI application
-├── frontend/            # Browser-based UI
-├── artifacts/           # LoRA adapter weights
-└── notebooks/           # Data processing and evaluation
+├── src/
+│   ├── finbot/                  # Core backend modules
+│   │   ├── main.py              # FastAPI application
+│   │   ├── state_machine.py     # Dialogue flow controller
+│   │   ├── parsers.py           # Input/slot parsing utilities
+│   │   ├── recommender.py       # Recommendation orchestration
+│   │   ├── llm_adapter.py       # Local LLM inference adapter
+│   │   ├── prompt_builder.py    # Prompt construction helpers
+│   │   ├── policy_loader.py     # Policy file loading
+│   │   ├── task_policy.py       # Task-level policy checks
+│   │   ├── safety.py            # Safety and refusal pipeline
+│   │   ├── i18n.py              # Multilingual response support
+│   │   ├── session_store.py     # Conversation/session persistence
+│   │   └── schemas.py           # Request/response schemas
+│   └── policies/                # Runtime policy documents
+├── frontend/                    # Browser-based UI
+│   ├── index.html               # Chat interface layout
+│   └── app.js                   # Frontend chat logic and API calls
+├── notebooks/                   # Data prep, training, and evaluation
+│   ├── 1_llm_setup__*.ipynb     # Base model loading and setup experiments
+│   ├── 2_llm_evaluation_summary.ipynb
+│   ├── 3_finetuning_runbook.ipynb
+│   ├── 4_prompting_techniques_ablation.ipynb
+│   ├── data/                    # Final SFT train/eval JSONL datasets
+│   ├── raw_data/                # Domain/language raw samples
+│   ├── prompting/               # Prompting ablation CSV outputs
+│   ├── eval/                    # Model evaluation JSON reports
+│   └── summary/                 # Aggregated metrics and selection notes
+├── demo/                        # Demo screenshots by task/language
+├── artifacts/                   # LoRA adapter weights and tokenizer files
+└── document/                    # Policy/prompt references and diagrams
 ```
 
 ## Performance
