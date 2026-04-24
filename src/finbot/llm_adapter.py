@@ -59,14 +59,27 @@ def generate_chat(messages: list[dict], model_id: str, adapter_path: str = None,
         return_tensors="pt",
     ).to(model.device)
 
-    out_ids = model.generate(
-        input_ids,
-        max_new_tokens=max_new_tokens,
-        do_sample=False,
-        repetition_penalty=1.05,
-        eos_token_id=tokenizer.eos_token_id,
-        pad_token_id=tokenizer.eos_token_id,
-    )
+    is_batch_encoding = hasattr(input_ids, "keys") and "input_ids" in input_ids
+    source_input_ids = input_ids["input_ids"] if is_batch_encoding else input_ids
 
-    new_tokens = out_ids[0, input_ids.shape[-1]:]
+    if is_batch_encoding:
+        out_ids = model.generate(
+            **input_ids,
+            max_new_tokens=max_new_tokens,
+            do_sample=False,
+            repetition_penalty=1.05,
+            eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+    else:
+        out_ids = model.generate(
+            input_ids,
+            max_new_tokens=max_new_tokens,
+            do_sample=False,
+            repetition_penalty=1.05,
+            eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+
+    new_tokens = out_ids[0, source_input_ids.shape[-1]:]
     return tokenizer.decode(new_tokens, skip_special_tokens=True)

@@ -76,6 +76,27 @@ READY_MESSAGE_TEMPLATE: dict[str, str] = {
     ZH: "很好，我已获取所需信息{suffix}！正在为您生成个性化建议……",
 }
 
+COMPARE_MODEL_PROMPT: dict[str, str] = {
+    EN: (
+        "Would you like to compare recommendations from another model?\n"
+        "[1] Keep current model\n"
+        "[2] Switch model in the selector and send another message\n"
+        "[3] Start a new profile"
+    ),
+    VI: (
+        "Bạn có muốn so sánh khuyến nghị từ mô hình khác không?\n"
+        "[1] Giữ mô hình hiện tại\n"
+        "[2] Đổi mô hình trong bộ chọn rồi gửi thêm một tin nhắn\n"
+        "[3] Bắt đầu hồ sơ mới"
+    ),
+    ZH: (
+        "您想切换模型对比推荐结果吗？\n"
+        "[1] 保持当前模型\n"
+        "[2] 在下拉框切换模型后再发送一条消息\n"
+        "[3] 开始新的资料收集"
+    ),
+}
+
 
 RECOMMENDATION_FAILED: dict[str, str] = {
     EN: "Sorry, I was unable to generate a recommendation at this time. Please try again.",
@@ -95,4 +116,6 @@ def field_question(field: str, lang: str) -> str:
 
 def ready_message(lang: str, unknown_fields: list[str]) -> str:
     suffix = f" (unknown: {', '.join(unknown_fields)})" if unknown_fields else ""
-    return t(READY_MESSAGE_TEMPLATE, lang).format(suffix=suffix)
+    intro = t(READY_MESSAGE_TEMPLATE, lang).format(suffix=suffix)
+    compare = t(COMPARE_MODEL_PROMPT, lang)
+    return f"{intro}\n\n{compare}"

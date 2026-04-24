@@ -76,8 +76,24 @@ def handle_turn(payload: ChatTurnRequest, session: dict[str, object]) -> TurnRes
     mode = TaskMode(task_mode_raw)
     current_field: str | None = session.get("next_item")
 
-    # if no next field, ask the next unfilled (not collected) field
+    # If no next field, either we're done (allow re-running recommendation)
+    # or we need to recover the next missing field.
     if current_field is None:
+        ready, unknown_fields = recommendation_ready(mode, collected)
+        session["unknown_fields"] = unknown_fields
+        session["ready_for_recommendation"] = ready
+        if ready:
+            return _result(
+                session,
+                start,
+                payload.model_id,
+                lang,
+                ChatState.RECOMMENDING,
+                mode.value,
+                ready_message(lang.value, unknown_fields),
+                None,
+                True,
+            )
         next_field = next_unfilled_field(mode, collected)
         session["next_item"] = next_field
         return _result(session, start, payload.model_id, lang,

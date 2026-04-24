@@ -25,13 +25,22 @@ from finbot.llm_adapter import preload_model
 from finbot.safety import sanitize_untrusted_text
 
 import logging
-import os
 
 load_dotenv()
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 adapter_path = os.getenv("FINBOT_ADAPTER_PATH")
 base_model = os.getenv("FINBOT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
+adapter_model_id = os.getenv("FINBOT_ADAPTER_MODEL_ID", "lora-qwen25-1p5b-finbot-v2")
+
+
+def _resolve_serving_model(model_id: str) -> str:
+    """
+    Map frontend adapter alias to the actual base model id used by PEFT.
+    """
+    if adapter_path and model_id == adapter_model_id:
+        return base_model
+    return model_id
 
 
 logging.basicConfig(
@@ -81,7 +90,8 @@ def health() -> dict[str, str]:
 
 @app.post("/model/load", response_model=ModelLoadResponse)
 def model_load(payload: ModelLoadRequest) -> ModelLoadResponse:
-    preload_model(payload.model_id, adapter_path)
+    resolved_model_id = _resolve_serving_model(payload.model_id)
+    preload_model(resolved_model_id, adapter_path)
     return ModelLoadResponse(status="ok", model_id=payload.model_id)
 
 
@@ -113,7 +123,7 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
                 collected=prompt_collected,
                 unknown_fields=result.session.get("unknown_fields", []),
             ),
-            model_id=payload.model_id,
+            model_id=_resolve_serving_model(payload.model_id),
             lang=result.detected_language,
             adapter_path=adapter_path,
         )
