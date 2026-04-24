@@ -43,6 +43,15 @@ def _resolve_serving_model(model_id: str) -> str:
     return model_id
 
 
+def _resolve_adapter_path(model_id: str) -> str | None:
+    """
+    Only attach LoRA weights when the adapter alias is selected.
+    """
+    if adapter_path and model_id == adapter_model_id:
+        return adapter_path
+    return None
+
+
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL, logging.INFO),
     format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
@@ -91,7 +100,7 @@ def health() -> dict[str, str]:
 @app.post("/model/load", response_model=ModelLoadResponse)
 def model_load(payload: ModelLoadRequest) -> ModelLoadResponse:
     resolved_model_id = _resolve_serving_model(payload.model_id)
-    preload_model(resolved_model_id, adapter_path)
+    preload_model(resolved_model_id, _resolve_adapter_path(payload.model_id))
     return ModelLoadResponse(status="ok", model_id=payload.model_id)
 
 
@@ -125,7 +134,7 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
             ),
             model_id=_resolve_serving_model(payload.model_id),
             lang=result.detected_language,
-            adapter_path=adapter_path,
+            adapter_path=_resolve_adapter_path(payload.model_id),
         )
         
     store.save(session_id, result.session)

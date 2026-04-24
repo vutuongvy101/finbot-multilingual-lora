@@ -226,6 +226,31 @@
       color: var(--text-muted);
       margin-left: 6px;
     }
+    .loading-title {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+    .context-marker-row {
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem 0 1rem;
+      animation: fadeUp 0.2s ease both;
+    }
+    .context-marker {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px dashed var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 0.65rem;
+      max-width: 90%;
+      text-align: center;
+      white-space: normal;
+    }
 
     /* ── Input footer ── */
     .chat-footer {
@@ -486,7 +511,8 @@
 
       <div class="topbar-controls">
         <select id="modelSelect" aria-label="Model">
-          <option value="Qwen/Qwen2.5-1.5B-Instruct" selected>Qwen 2.5 · 1.5B</option>
+          <option value="lora-qwen25-1p5b-finbot-v2" selected>LoRA Qwen 2.5 1.5B FinBot v2</option>
+          <option value="Qwen/Qwen2.5-1.5B-Instruct">Qwen 2.5 1.5B</option>
         </select>
         <select id="langSelect" aria-label="Language">
           <option value="en" selected>English</option>

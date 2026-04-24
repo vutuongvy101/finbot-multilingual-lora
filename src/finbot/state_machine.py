@@ -29,26 +29,12 @@ class TurnResult:
     meta: ResponseMeta
 
 
-def detect_language(message: str, hint: LanguageCode | None) -> LanguageCode:
-    if hint is not None:
-        return hint
-
-    vietnamese_chars = set(
-        "àáâãèéêìíòóôõùúýăđơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ"
-        "ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝĂĐƠƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼẾỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴỶỸ"
-    )
-    vietnamese_tokens = {"toi", "vui long", "giup", "dau tu", "tai chinh", "ban", "khong", "co"}
-    lowered = message.lower()
-
-    if any(ch in vietnamese_chars for ch in message) or any(token in lowered for token in vietnamese_tokens):
-        return LanguageCode.VI
-    if any("\u4e00" <= ch <= "\u9fff" for ch in message):
-        return LanguageCode.ZH
-    return LanguageCode.EN
 
 def handle_turn(payload: ChatTurnRequest, session: dict[str, object]) -> TurnResult:
     start = perf_counter()
-    lang = detect_language(payload.message, payload.language_hint)
+    
+    # Frontend always sends the user's selected language, so just use it
+    lang = LanguageCode(payload.language_hint) if payload.language_hint else LanguageCode.EN
     session["language"] = lang.value
 
     collected: dict[str, str] = session.setdefault("collected", {})  # type: ignore[assignment]

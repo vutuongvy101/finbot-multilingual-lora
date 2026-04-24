@@ -78,22 +78,19 @@ READY_MESSAGE_TEMPLATE: dict[str, str] = {
 
 COMPARE_MODEL_PROMPT: dict[str, str] = {
     EN: (
-        "Would you like to compare recommendations from another model?\n"
-        "[1] Keep current model\n"
-        "[2] Switch model in the selector and send another message\n"
-        "[3] Start a new profile"
+        "That completes your personalized recommendation! "
+        "Feel free to change the language or model settings above and restart the session "
+        "if you'd like to explore different perspectives or start a new consultation."
     ),
     VI: (
-        "Bạn có muốn so sánh khuyến nghị từ mô hình khác không?\n"
-        "[1] Giữ mô hình hiện tại\n"
-        "[2] Đổi mô hình trong bộ chọn rồi gửi thêm một tin nhắn\n"
-        "[3] Bắt đầu hồ sơ mới"
+        "Hoàn thành khuyến nghị cá nhân của bạn! "
+        "Bạn có thể thay đổi cài đặt ngôn ngữ hoặc mô hình ở trên và khởi động lại phiên "
+        "nếu muốn khám phá các góc nhìn khác hoặc bắt đầu tư vấn mới."
     ),
     ZH: (
-        "您想切换模型对比推荐结果吗？\n"
-        "[1] 保持当前模型\n"
-        "[2] 在下拉框切换模型后再发送一条消息\n"
-        "[3] 开始新的资料收集"
+        "您的个性化建议已完成！"
+        "如需探索不同观点或开始新的咨询，"
+        "可随时更改上方的语言或模型设置并重启会话。"
     ),
 }
 
