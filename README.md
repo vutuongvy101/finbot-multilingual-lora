@@ -1,6 +1,6 @@
 # FinBot: Multilingual Financial Assistant
 
-[![CI](https://github.com/vutuongvy101/financialbot/actions/workflows/ci.yml/badge.svg)](https://github.com/vutuongvy101/financialbot/actions/workflows/ci.yml)
+[![CI](https://github.com/vutuongvy101/finbot-multilingual-lora/actions/workflows/ci.yml/badge.svg)](https://github.com/vutuongvy101/finbot-multilingual-lora/actions/workflows/ci.yml)
 
 A smart financial assistant that provides personalized recommendations for planning, investment, and trading through structured multilingual dialogue. Built with a locally deployed fine-tuned LLM and deterministic dialogue engine.
 
@@ -14,6 +14,8 @@ A smart financial assistant that provides personalized recommendations for plann
 - **Safety Hardened**: Multilingual prompt-injection defense and PII redaction
 
 ## Demo
+
+![FinBot multilingual dialogue demo](demo/finbot-demo.gif)
 
 | English — Investment | Vietnamese — Planning | Chinese — Trading |
 |:---:|:---:|:---:|
