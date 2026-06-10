@@ -25,6 +25,13 @@ rag = [
   "sentence-transformers>=3.0.0",
   "numpy>=1.26.0",
 ]
+dev = [
+  "pytest>=8.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]

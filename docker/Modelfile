@@ -1,0 +1,11 @@
+# Example Ollama Modelfile — point FROM at your merged GGUF export.
+# Merge LoRA first: model.merge_and_unload() then export (see notebooks/3_finetuning_runbook.ipynb).
+#
+#   ollama create finbot -f docker/Modelfile
+#
+FROM ./finbot-merged.gguf
+
+PARAMETER temperature 0
+PARAMETER num_predict 2048
+
+SYSTEM You are FinBot, a multilingual financial planning assistant. Respond with valid JSON only.

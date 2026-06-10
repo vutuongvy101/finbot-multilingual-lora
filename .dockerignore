@@ -1,0 +1,17 @@
+.venv
+__pycache__
+*.pyc
+.git
+.env
+*.zip
+notebooks/
+document/
+demo/
+artifacts/**/*.safetensors
+artifacts/**/tokenizer.json
+artifacts/**/vocab.json
+artifacts/**/merges.txt
+artifacts/**/training_args.bin
+financialbot/
+*.pdf
+.DS_Store
