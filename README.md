@@ -180,7 +180,7 @@ finbot/
 │   ├── eval/                    # Model evaluation JSON reports
 │   └── summary/                 # Aggregated metrics and selection notes
 ├── demo/                        # Demo screenshots by task/language
-├── artifacts/                   # Local adapter cache (weights live on 🤗 Hub)
+├── artifacts/                   # HF Hub pointer only (weights not in git)
 └── document/                    # Policy/prompt references and diagrams
 ```
 

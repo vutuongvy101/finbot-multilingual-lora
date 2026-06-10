@@ -8,15 +8,6 @@ financialbot.egg-info/
 .txt
 00000/
 
-# LoRA adapter weights — published on Hugging Face Hub
-artifacts/**/*.safetensors
-artifacts/**/tokenizer.json
-artifacts/**/vocab.json
-artifacts/**/merges.txt
-artifacts/**/training_args.bin
-financialbot/artifacts/**/*.safetensors
-financialbot/artifacts/**/tokenizer.json
-financialbot/artifacts/**/vocab.json
-financialbot/artifacts/**/merges.txt
-financialbot/artifacts/**/training_args.bin
-finalcialbot/**/*
+# LoRA adapter weights — published on Hugging Face Hub (see artifacts/README.md)
+artifacts/lora-qwen25-1p5b-finbot-v2/
+financialbot/
