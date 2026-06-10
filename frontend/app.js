@@ -216,6 +216,10 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
+function normalizeNewlines(value) {
+  return String(value ?? "").replace(/\\n/g, "\n");
+}
+
 // ── Avatar SVG helpers ───────────────────────────────────────────────────────
 
 function botAvatarHtml() {
@@ -342,7 +346,7 @@ function createRecommendationCard(rec) {
   const safeSources = Array.isArray(rec.sources)
     ? rec.sources.filter((s) => s && String(s).trim()) : [];
   const sourceChips = safeSources.length > 0
-    ? safeSources.map((s) => `<span class="source-chip">${escapeHtml(s)}</span>`).join("")
+    ? safeSources.map((s) => `<span class="source-chip">${escapeHtml(normalizeNewlines(s))}</span>`).join("")
     : `<span class="source-chip">${escapeHtml(uiText("na"))}</span>`;
 
   const card = document.createElement("div");
@@ -356,19 +360,19 @@ function createRecommendationCard(rec) {
       <div class="recommendation-grid">
         <section class="recommendation-item recommendation-item-wide">
           <h6>${escapeHtml(uiText("profileSummary"))}</h6>
-          <p>${escapeHtml(rec.profile_summary || uiText("na"))}</p>
+          <p>${escapeHtml(normalizeNewlines(rec.profile_summary || uiText("na")))}</p>
         </section>
         <section class="recommendation-item recommendation-item-wide">
           <h6>${escapeHtml(uiText("recommendation"))}</h6>
-          <p>${escapeHtml(rec.recommendation || uiText("na"))}</p>
+          <p>${escapeHtml(normalizeNewlines(rec.recommendation || uiText("na")))}</p>
         </section>
         <section class="recommendation-item">
           <h6>${escapeHtml(uiText("reasoning"))}</h6>
-          <p>${escapeHtml(rec.reasoning || uiText("na"))}</p>
+          <p>${escapeHtml(normalizeNewlines(rec.reasoning || uiText("na")))}</p>
         </section>
         <section class="recommendation-item">
           <h6>${escapeHtml(uiText("risksCaveats"))}</h6>
-          <p>${escapeHtml(rec.risks_caveats || uiText("na"))}</p>
+          <p>${escapeHtml(normalizeNewlines(rec.risks_caveats || uiText("na")))}</p>
         </section>
         <section class="recommendation-item recommendation-item-wide">
           <h6>${escapeHtml(uiText("sources"))}</h6>
@@ -376,7 +380,7 @@ function createRecommendationCard(rec) {
         </section>
         <section class="recommendation-item recommendation-item-wide">
           <h6>${escapeHtml(uiText("disclaimer"))}</h6>
-          <p>${escapeHtml(rec.disclaimer || uiText("na"))}</p>
+          <p>${escapeHtml(normalizeNewlines(rec.disclaimer || uiText("na")))}</p>
         </section>
       </div>
     </div>`;
@@ -384,10 +388,11 @@ function createRecommendationCard(rec) {
 }
 
 function renderAssistantContent(target, text, recommendation = null) {
+  const normalizedText = normalizeNewlines(text);
   target.innerHTML = "";
   const p = document.createElement("p");
   p.style.marginBottom = "0";
-  p.textContent = text.trim();
+  p.textContent = normalizedText;
   target.appendChild(p);
 
   const card = createRecommendationCard(recommendation);

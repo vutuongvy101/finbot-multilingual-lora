@@ -1,5 +1,5 @@
 technique,schema_pass_rate,safety_pass_rate,relevance_score,mean_latency_ms
-baseline_structured,1.0,1.0,0.0,3361.028051376343
-brief_reasoning,1.0,1.0,0.0,7115.530872344971
-few_shot_structured,1.0,1.0,0.0,4775.545525550842
-self_check_instruction,1.0,1.0,0.0,9425.485944747925
+self_check_instruction,1.0,0.9,0.55,10422.684216499329
+brief_reasoning,1.0,0.8,0.55,9364.20111656189
+baseline_structured,1.0,1.0,0.475,10804.616141319275
+few_shot_structured,1.0,1.0,0.45,8080.682015419006

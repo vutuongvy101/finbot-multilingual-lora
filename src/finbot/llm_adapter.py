@@ -47,7 +47,7 @@ def preload_model(model_id: str, adapter_path: str = None) -> None:
     _get_generator(model_id, adapter_path)
 
 
-def generate_chat(messages: list[dict], model_id: str, adapter_path: str = None, max_new_tokens: int = 1024) -> str:
+def generate_chat(messages: list[dict], model_id: str, adapter_path: str = None, max_new_tokens: int = 2048) -> str:
     gen = _get_generator(model_id, adapter_path)
     tokenizer = gen.tokenizer
     model = gen.model

@@ -1,661 +1,754 @@
 idx,technique,schema_ok,safety_ok,relevance,latency_ms,output,user_text
-1,baseline_structured,True,True,0.0,3689.403533935547,"{
+1,baseline_structured,True,True,0.5,12433.139562606812,"{
+  ""profile_summary"": ""The user aims to buy and hold real estate through stock in the real estate sector, targeting an income band of $60,000-$120,000 per year over a long-term horizon of 5 years or more."",
+  ""recommendation"": ""Investing in stocks related to the real estate industry can be a viable strategy for building wealth over time, especially if you have a medium-risk tolerance."",
+  ""reasoning"": ""This approach allows for potential capital appreciation from property values while also providing rental income, which can contribute to your overall portfolio's growth."",
+  ""risks_caveats"": ""While this strategy has the potential for significant returns, it also carries higher risk due to market volatility and changes in economic conditions affecting both housing prices and rental markets."",
+  ""sources"": [""Real Estate Investment Trusts (REITs)"", ""Publicly traded REITs on the NYSE and NASDAQ""],
+  ""disclaimer"": ""Please conduct thorough research before making any investment decisions. This information is not intended as professional advice and should be used as general guidance.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Mua tích trữ bất động sản thông qua cổ phiếu ngành địa ốc."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+1,few_shot_structured,True,True,0.5,8860.854387283325,"{
+  ""profile_summary"": ""The user aims to buy and accumulate property through stock investments in the real estate sector."",
+  ""recommendation"": ""Invest in diversified stocks within the real estate industry or REITs (Real Estate Investment Trusts)."",
+  ""reasoning"": ""Long-term investment horizon aligns well with medium-risk tolerance, allowing for potential growth while maintaining stability."",
+  ""risks_caveats"": ""Market volatility can impact returns; diversification helps mitigate risk."",
+  ""sources"": [
+    {
+      ""source"": ""Financial Advisor"",
+      ""content"": ""Diversify your portfolio across different sectors and asset classes.""
+    },
+    {
+      ""source"": ""Real Estate Industry Expert"",
+      ""content"": ""Focus on companies with strong fundamentals and stable cash flows.""
+    }
+  ],
+  ""disclaimer"": ""This information is for educational purposes only. Seek professional financial advice before making any decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Mua tích trữ bất động sản thông qua cổ phiếu ngành địa ốc."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+1,brief_reasoning,True,True,0.25,8950.285911560059,"{
+  ""profile_summary"": ""The user aims to buy and hold real estate through stock in the real estate sector over a long-term horizon of 5 years or more."",
+  ""recommendation"": ""Investing in stocks related to the real estate industry can be a viable strategy for building wealth over time."",
+  ""reasoning"": ""Given the goal is to accumulate capital through buying and holding properties, investing in stocks that represent this asset class aligns well with the user's objectives."",
+  ""risks_caveats"": ""While medium-risk tolerance allows for some exposure to market fluctuations, it's important to diversify investments within the real estate sector to mitigate risk."",
+  ""sources"": [""Real Estate Investment Trusts (REITs), Real Estate Investment Funds (ETFs), and individual real estate companies' stocks""],
+  ""disclaimer"": ""This investment strategy involves significant risk and should only be undertaken after thorough research and consultation with a financial advisor.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Mua tích trữ bất động sản thông qua cổ phiếu ngành địa ốc."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+1,self_check_instruction,True,True,0.5,7886.549472808838,"{
+  ""profile_summary"": ""The user aims to trade in the real estate sector by investing in property-related stocks."",
+  ""recommendation"": ""Investing in property-related stocks can be risky due to market volatility and regulatory changes affecting the industry."",
+  ""reasoning"": ""The goal of buying and holding properties through stock investments aligns well with medium-risk tolerance as it involves long-term capital appreciation rather than short-term gains."",
+  ""risks_caveats"": ""High risk associated with fluctuations in the real estate market and potential for significant losses if not properly diversified."",
+  ""sources"": [""Real Estate Investment Trusts (REITs)"", ""Property Management Companies""],
+  ""disclaimer"": ""This advice is provided for informational purposes only and should not be considered investment or trading advice. Always conduct thorough research before making any investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Mua tích trữ bất động sản thông qua cổ phiếu ngành địa ốc."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+2,baseline_structured,True,True,0.5,11060.432195663452,"{
   ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
+    ""task"": ""TRADING"",
+    ""language"": ""Chinese"",
+    ""goal"": ""利用社交媒体热度交易 Meme 股票"",
+    ""income_band"": ""120K+"",
+    ""capital_range"": ""50-250K"",
+    ""time_horizon"": ""<1y"",
+    ""risk_tolerance"": ""HIGH""
   },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
-  ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-1,few_shot_structured,True,True,0.0,4815.446376800537,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-1,brief_reasoning,True,True,0.0,7144.181966781616,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-1,self_check_instruction,True,True,0.0,9507.197618484497,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""recommendation"": ""建议谨慎参与，风险较高。"",
+  ""reasoning"": ""社交媒体热点可能带来短期波动，但长期价值难以确定，且市场波动大，需注意控制仓位和止损。"",
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""社交媒体热度变化迅速，投资需具备较强的风险承受能力。"",
+    ""短期内的高收益伴随高风险，需做好心理准备。"",
+    ""市场波动剧烈，需保持冷静，避免盲目跟风。"",
+    ""缺乏专业分析，仅凭个人判断存在较大风险。"",
+    ""建议分散投资，降低单一股票风险。""
   ],
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-2,baseline_structured,True,True,0.0,3340.425968170166,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
+  ""disclaimer"": ""本推荐仅供参考，投资决策应基于全面分析和个人情况。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""利用社交媒体热度交易 Meme 股票。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+2,few_shot_structured,True,True,0.5,8625.236511230469,"{
+  ""profile_summary"": ""The user aims to trade Meme stocks using social media trends, with an income band of $120K+ and a capital range of $50K-$250K, trading within a short time horizon."",
+  ""recommendation"": ""High-risk, high-reward strategy suitable for users with substantial capital and a willingness to take on significant market volatility."",
+  ""reasoning"": ""Given the high-risk nature of trading Meme stocks and the need for quick profits due to the short time horizon, this approach aligns well with the user's stated risk tolerance and capital availability."",
+  ""risks_caveats"": ""Potential for rapid losses if market conditions change drastically or if the user makes poor investment decisions."",
   ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-2,few_shot_structured,True,True,0.0,4844.667673110962,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-2,brief_reasoning,True,True,0.0,7221.452474594116,"{
+  ""disclaimer"": ""This information is provided for educational purposes only and should not be considered as professional financial advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""利用社交媒体热度交易 Meme 股票。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+2,brief_reasoning,True,True,0.75,7983.22606086731,"{
+  ""profile_summary"": ""The user is interested in trading Meme stocks using social media trends."",
+  ""recommendation"": ""Given the high risk tolerance and short-term horizon, it's advisable to diversify investments across different sectors and use stop-loss orders to mitigate losses."",
+  ""reasoning"": ""High-risk strategies should be approached cautiously due to potential for significant gains or losses. Diversification helps spread risk, while stop-losses protect against unexpected market downturns."",
+  ""risks_caveats"": ""Social media trading carries substantial risks including volatility, misinformation, and fraud. Investors must conduct thorough research and avoid emotional decision-making."",
+  ""sources"": [""Investopedia"", ""Forbes""],
+  ""disclaimer"": ""Trading involves significant risk and may not guarantee profits. Always consult with a financial advisor before making investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""利用社交媒体热度交易 Meme 股票。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+2,self_check_instruction,True,True,0.5,10013.574123382568,"{
   ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
+    ""task"": ""TRADING"",
+    ""language"": ""Chinese"",
+    ""goal"": ""利用社交媒体热度交易Meme股票"",
+    ""income_band"": ""120K+"",
+    ""capital_range"": ""50-250K"",
+    ""time_horizon"": ""<1y"",
+    ""risk_tolerance"": ""HIGH""
   },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-2,self_check_instruction,True,True,0.0,9383.023262023926,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""recommendation"": ""建议谨慎参与，风险较高。"",
+  ""reasoning"": ""社交媒体热点可能带来短期波动，但长期价值难以确定，且市场波动大，需注意控制仓位和止损。"",
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""社交媒体热点不可预测，短期内股价可能大幅波动。"",
+    ""缺乏基本面分析，投资决策依赖于情绪而非数据。"",
+    ""市场波动大，需保持警惕并设置好止损点。"",
+    ""高风险偏好者应考虑其他低风险投资选项。""
   ],
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-3,baseline_structured,True,True,0.0,3307.307481765747,"{
+  ""disclaimer"": ""本推荐仅供参考，投资需自行承担风险。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""利用社交媒体热度交易 Meme 股票。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+3,baseline_structured,True,True,0.75,8538.315534591675,"{
   ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
+    ""task"": ""TRADING"",
+    ""language"": ""Chinese"",
+    ""goal"": ""在短期内通过交易IPO新股寻找快速套利机会。"",
+    ""income_band"": ""60-120K"",
+    ""capital_range"": ""<10K"",
+    ""time_horizon"": ""SHORT (<1y)"",
+    ""risk_tolerance"": ""HIGH""
   },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
-  ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-3,few_shot_structured,True,True,0.0,4789.162397384644,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-3,brief_reasoning,True,True,0.0,7180.6089878082275,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-3,self_check_instruction,True,True,0.0,9503.162622451782,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""recommendation"": ""建议谨慎参与，风险较高。"",
+  ""reasoning"": ""短期快速套利通常伴随着高风险和低回报，不适合追求长期稳定收益的投资者。"",
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""市场波动大"",
+    ""信息不对称可能导致错误决策"",
+    ""缺乏经验可能增加失败概率""
   ],
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-4,baseline_structured,True,True,0.0,3332.3168754577637,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
+  ""disclaimer"": ""本推荐仅供参考，投资需自行承担风险。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""在短期内通过交易 IPO 新股寻找快速套利机会。"", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+3,few_shot_structured,True,True,0.0,7016.982555389404,"{
+  ""profile_summary"": ""用户目标是利用短期交易IPO新股获取快速套利，收入范围为60-120K，资本范围小于10K，时间期限为短于一年，风险承受能力高。"",
+  ""recommendation"": ""建议用户关注市场动态，谨慎选择交易标的，并注意控制仓位。"",
+  ""reasoning"": ""由于收入和资本有限，且风险偏好较高，应优先考虑低风险、高收益的投资策略。"",
+  ""risks_caveats"": ""需密切关注市场波动，避免过度投机；适时调整投资组合以应对市场变化。"",
   ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-4,few_shot_structured,True,True,0.0,4820.188999176025,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
+  ""disclaimer"": ""本信息仅供参考，不作为具体投资建议。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""在短期内通过交易 IPO 新股寻找快速套利机会。"", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+3,brief_reasoning,True,True,0.5,7134.330749511719,"{
+  ""profile_summary"": ""The user is looking for short-term trading opportunities in the stock market using IPOs as a strategy."",
+  ""recommendation"": ""Given the high risk tolerance and capital range of <10K, it's advisable to proceed cautiously."",
+  ""reasoning"": ""High-risk strategies like trading IPOs require significant caution due to potential losses. The low capital suggests this might be an experiment rather than a serious investment."",
+  ""risks_caveats"": ""Risk factors include volatility, regulatory changes, and the unpredictability of IPO performance."",
+  ""sources"": [""Financial news websites"", ""Trading forums""],
+  ""disclaimer"": ""This advice is provided for informational purposes only and should not be considered as personalized financial advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""在短期内通过交易 IPO 新股寻找快速套利机会。"", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+3,self_check_instruction,True,True,0.75,9279.194116592407,"{
+  ""profile_summary"": {
+    ""task"": ""TRADING"",
+    ""language"": ""Chinese"",
+    ""goal"": ""在短期内通过交易IPO新股寻找快速套利机会。"",
+    ""income_band"": ""60-120K"",
+    ""capital_range"": ""<10K"",
+    ""time_horizon"": ""SHORT (<1y)"",
+    ""risk_tolerance"": ""HIGH""
+  },
   ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-4,brief_reasoning,True,True,0.0,7144.601821899414,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-4,self_check_instruction,True,True,0.0,9437.08872795105,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""reasoning"": null,
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""短期市场波动大，风险较高。"",
+    ""缺乏长期投资经验可能影响决策。"",
+    ""市场变化迅速，需持续关注和调整策略。"",
+    ""高风险可能导致资金损失。"",
+    ""建议谨慎操作，分散投资以降低风险。""
   ],
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-5,baseline_structured,True,True,0.0,3313.528537750244,"{
+  ""disclaimer"": ""本助手提供的信息仅供参考，不构成任何投资建议。投资有风险，请自行承担投资风险。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""在短期内通过交易 IPO 新股寻找快速套利机会。"", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+4,baseline_structured,True,True,0.75,12082.624912261963,"{
   ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
+    ""task"": ""TRADING"",
+    ""language"": ""English"",
+    ""goal"": ""Gold mining stock speculation during bull cycles."",
+    ""income_band"": ""60-120K"",
+    ""capital_range"": ""10-50K"",
+    ""time_horizon"": ""MEDIUM (1-5y)"",
+    ""risk_tolerance"": ""HIGH""
   },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
-  ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-5,few_shot_structured,True,True,0.0,4753.639936447144,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-5,brief_reasoning,True,True,0.0,7047.02615737915,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-5,self_check_instruction,True,True,0.0,9432.031869888306,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""recommendation"": ""Highly speculative and risky due to the volatile nature of gold mining stocks."",
+  ""reasoning"": ""The task involves trading in gold mining stocks, which can be highly speculative and risky. The goal is set at $60-$120k income band and capital range from $10-$50k, indicating medium-term investment horizon. Given the high risk tolerance, this task should be approached cautiously."",
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""High volatility associated with gold mining stocks."",
+    ""Lack of reliable historical data for accurate predictions."",
+    ""Market fluctuations affecting returns unpredictably.""
   ],
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-6,baseline_structured,True,True,0.0,3314.847469329834,"{
+  ""disclaimer"": ""This information is provided for educational purposes only. Trading carries significant risks, including loss of principal. Always conduct thorough research before making any investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: English
+Collected: {""GOAL"": ""Gold mining stock speculation during bull cycles."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+4,few_shot_structured,True,True,0.75,9591.77017211914,"{
+  ""profile_summary"": ""The user aims to speculate on gold mining stocks during bull cycles with an income band of $60,000-$120,000, a capital range of $10,000-$50,000, a medium time horizon of 1-5 years, and a high risk tolerance."",
+  ""recommendation"": ""Investigate potential high-risk strategies such as leveraged ETFs or options trading within the constraints provided."",
+  ""reasoning"": ""Given the high risk tolerance and medium time horizon, speculative investments like gold mining stocks can be considered, especially if they offer higher potential returns compared to traditional assets."",
+  ""risks_caveats"": ""High volatility associated with speculative investments; consider diversification to mitigate risk."",
+  ""sources"": [
+    ""Financial news websites"",
+    ""Trading forums""
+  ],
+  ""disclaimer"": ""This information is for educational purposes only and should not be construed as investment advice.""
+}","[PROFILE]
+Task: TRADING
+Language: English
+Collected: {""GOAL"": ""Gold mining stock speculation during bull cycles."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+4,brief_reasoning,True,True,0.75,8996.567726135254,"{
+  ""profile_summary"": ""The user is interested in trading gold mining stocks for high returns within a medium-term horizon."",
+  ""recommendation"": ""Given the goal of speculative trading and the high-risk tolerance, it's advisable to diversify investments across multiple assets to mitigate risk."",
+  ""reasoning"": ""Speculative trading carries significant risk due to market volatility and price fluctuations. Diversification helps spread this risk by investing in various asset classes such as equities, commodities, and real estate."",
+  ""risks_caveats"": ""High-risk strategies like speculative trading should be approached cautiously. It's important to have a solid understanding of the markets and to set clear stop-loss points to limit potential losses."",
+  ""sources"": [""Financial Times"", ""Investopedia""],
+  ""disclaimer"": ""This advice is provided for informational purposes only and does not constitute investment or financial planning advice. Always conduct thorough research before making any investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: English
+Collected: {""GOAL"": ""Gold mining stock speculation during bull cycles."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+4,self_check_instruction,True,False,0.75,12649.335384368896,"{
   ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
+    ""task"": ""TRADING"",
+    ""language"": ""English"",
+    ""goal"": ""Gold mining stock speculation during bull cycles."",
+    ""income_band"": ""60-120K"",
+    ""capital_range"": ""10-50K"",
+    ""time_horizon"": ""MEDIUM (1-5y)"",
+    ""risk_tolerance"": ""HIGH""
   },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
-  ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-6,few_shot_structured,True,True,0.0,4776.746511459351,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-6,brief_reasoning,True,True,0.0,7111.721992492676,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-6,self_check_instruction,True,True,0.0,9454.342603683472,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""recommendation"": ""Highly speculative trading strategy involving high-risk investments in gold mining stocks."",
+  ""reasoning"": ""The goal of Gold mining stock speculation aligns well with the risk tolerance level set by the user, as it involves significant capital investment and potential for substantial gains. However, this approach carries high volatility and requires careful management to mitigate losses."",
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""High volatility due to market fluctuations and economic conditions affecting gold prices."",
+    ""Risk of losing all invested capital if the stock does not perform well or if the bull cycle ends prematurely."",
+    ""Need for extensive research and analysis to identify undervalued stocks.""
   ],
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-7,baseline_structured,True,True,0.0,3356.5564155578613,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
+  ""disclaimer"": ""This advice is provided for informational purposes only and should be used at your own risk. Trading carries significant risks, including loss of principal. Always conduct thorough research before making any investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: English
+Collected: {""GOAL"": ""Gold mining stock speculation during bull cycles."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+5,baseline_structured,True,True,0.5,6616.081714630127,"{
+  ""profile_summary"": ""The user is interested in day trading Forex to maximize their small capital and aims for short-term gains."",
+  ""recommendation"": ""The user should consider using a platform that offers low fees or commission-free trading to minimize costs."",
+  ""reasoning"": ""Low fees can significantly increase the profit potential of day trading by reducing overhead expenses."",
+  ""risks_caveats"": ""High risk tolerance means the user must be prepared for significant losses if they trade poorly."",
+  ""sources"": [""https://www.investopedia.com/terms/d/daytrading.asp""],
+  ""disclaimer"": ""This information is provided for educational purposes only and does not constitute investment advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Day trading các cặp tiền tệ chính (Forex) để tối đa hóa vốn nhỏ."", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+5,few_shot_structured,True,True,0.75,7589.0374183654785,"{
+  ""profile_summary"": ""The user aims to trade Forex day trading using a small amount of capital (<10K USD), with an income band under $60K per year, and a time horizon of less than one year."",
+  ""recommendation"": ""Given the constraints on capital and income, it's advisable to focus on high-risk, high-reward strategies such as leveraged trades or speculative positions."",
+  ""reasoning"": ""High-risk strategies can potentially yield higher returns but also carry significant volatility and potential losses."",
+  ""risks_caveats"": ""Leverage increases exposure to market fluctuations, leading to greater potential gains and losses."",
   ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-7,few_shot_structured,True,True,0.0,4777.571439743042,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-7,brief_reasoning,True,True,0.0,7134.733438491821,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-7,self_check_instruction,True,True,0.0,9379.147291183472,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+  ""disclaimer"": ""This information is provided for educational purposes only and should not be considered as investment advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Day trading các cặp tiền tệ chính (Forex) để tối đa hóa vốn nhỏ."", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+5,brief_reasoning,True,True,0.75,7095.89958190918,"{
+  ""profile_summary"": ""The user is interested in day trading Forex for short-term gains using a small capital and income band."",
+  ""recommendation"": ""Recommend the use of binary options or spread betting platforms due to their high leverage and potential for quick profits."",
+  ""reasoning"": ""Given the low capital range and high risk tolerance, these platforms offer higher returns per unit of capital compared to traditional forex trading."",
+  ""risks_caveats"": ""High volatility and liquidity issues may affect performance; users should be prepared for significant losses."",
+  ""sources"": [""Binary Options Brokers"", ""Spread Betting Platforms""],
+  ""disclaimer"": ""Trading carries significant risk. Users must have a thorough understanding of market dynamics and personal finance management.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Day trading các cặp tiền tệ chính (Forex) để tối đa hóa vốn nhỏ."", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+5,self_check_instruction,True,True,0.75,7663.997173309326,"{
+  ""profile_summary"": ""The user aims to trade Forex for short-term gains using a small capital amount."",
+  ""recommendation"": ""High-risk, high-reward strategy suitable for experienced traders."",
+  ""reasoning"": ""Given the goal of day trading Forex with a small capital range and a high risk tolerance, this approach aligns well with the characteristics of such strategies."",
+  ""risks_caveats"": ""This involves significant market volatility and potential for rapid loss of capital. The user should be prepared for substantial losses if not managing their risk effectively."",
+  ""sources"": [""https://www.investopedia.com/terms/h/highriskhighreward.asp""],
+  ""disclaimer"": ""Trading carries significant risk. This information is provided for educational purposes only and does not constitute investment advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Day trading các cặp tiền tệ chính (Forex) để tối đa hóa vốn nhỏ."", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""<10K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+6,baseline_structured,True,True,0.25,13706.502676010132,"{
+  ""profile_summary"": ""Người dùng mục tiêu là một nhà đầu tư có kinh nghiệm trong lĩnh vực tài chính và muốn tối ưu hóa lợi nhuận từ trái phiếu doanh nghiệp dài hạn."",
+  ""recommendation"": ""Đầu tư vào các trái phiếu doanh nghiệp có độ tín nhiệm cao, thời gian đáo hạn phù hợp với mục tiêu dài hạn của người dùng."",
+  ""reasoning"": ""Theo dõi các công ty có track record tốt về thanh khoản và khả năng trả nợ để đảm bảo an toàn cho khoản đầu tư."",
+  ""risks_caveats"": ""Trái phiếu doanh nghiệp có thể chịu rủi ro hơn so với trái phiếu ngân hàng vì sự phụ thuộc vào hoạt động kinh doanh của công ty phát hành."",
+  ""sources"": [
+    {
+      ""name"": ""Investopedia"",
+      ""url"": ""https://www.investopedia.com/terms/t/tripleA-rated-trusts.asp""
+    },
+    {
+      ""name"": ""Bloomberg"",
+      ""url"": ""https://www.bloomberg.com/quote/TOP:IND""
+    }
   ],
-  ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-8,baseline_structured,True,True,0.0,3317.7247047424316,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
-  ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-8,few_shot_structured,True,True,0.0,4737.729549407959,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-8,brief_reasoning,True,True,0.0,7078.1519412994385,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-8,self_check_instruction,True,True,0.0,9369.287252426147,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+  ""disclaimer"": ""Chúng tôi không khuyến nghị đầu tư vào bất kỳ loại tài sản nào mà không có hiểu biết rõ ràng về nó. Đầu tư cần được thực hiện sau khi đã xem xét kỹ lưỡng và có sự hỗ trợ từ chuyên gia tài chính.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu hóa lợi nhuận từ trái phiếu doanh nghiệp dài hạn."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""LOW""}
+Unknown fields: [""CREDIT_PREFERENCE""]
+
+[CONTEXT]
+(no external context retrieved)"
+6,few_shot_structured,True,True,0.5,10588.152170181274,"{
+  ""profile_summary"": ""The user aims to optimize long-term profit from corporate bonds while maintaining a conservative risk appetite."",
+  ""recommendation"": ""Invest in diversified corporate bond portfolios with a focus on stable yields and limited credit exposure."",
+  ""reasoning"": ""Given the goal of maximizing long-term profits and the desire for low-risk investment, diversification across different issuers can help mitigate risk without sacrificing potential gains."",
+  ""risks_caveats"": ""Credit risk should be carefully managed due to the longer time horizon and higher expected yield compared to shorter-term investments."",
+  ""sources"": [
+    {
+      ""source"": ""Financial Advisor"",
+      ""content"": ""Corporate bonds offer attractive yields but come with inherent credit risk. Diversifying into multiple issuers reduces this risk.""
+    },
+    {
+      ""source"": ""Market Research Report"",
+      ""content"": ""Longer-term investments typically require more patience and discipline. Focus on quality issuers and avoid impulsive decisions.""
+    }
   ],
-  ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-9,baseline_structured,True,True,0.0,3327.9786109924316,"{
+  ""disclaimer"": ""This information is provided for educational purposes only. It does not constitute professional financial advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu hóa lợi nhuận từ trái phiếu doanh nghiệp dài hạn."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""LOW""}
+Unknown fields: [""CREDIT_PREFERENCE""]
+
+[CONTEXT]
+(no external context retrieved)"
+6,brief_reasoning,True,False,0.5,9454.97751235962,"{
+  ""profile_summary"": ""The user aims to optimize long-term profit from corporate bonds within the income band of 60-120k and capital range of 50-250k. The time horizon is set for 5 years or more, with a low risk tolerance."",
+  ""recommendation"": ""Invest in high-quality, stable corporate bonds with strong credit ratings."",
+  ""reasoning"": ""Given the goal of maximizing profits while maintaining a low-risk tolerance, investing in well-established companies with solid financial health and reliable bond issuances aligns best with these criteria."",
+  ""risks_caveats"": ""While the investment strategy focuses on stability, it's important to monitor market conditions closely and consider diversification to mitigate potential losses."",
+  ""sources"": ""Financial reports, credit rating agencies, and industry publications"",
+  ""disclaimer"": ""This advice is based on general principles and may not apply to all individual situations. Always conduct thorough research before making any investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu hóa lợi nhuận từ trái phiếu doanh nghiệp dài hạn."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""LOW""}
+Unknown fields: [""CREDIT_PREFERENCE""]
+
+[CONTEXT]
+(no external context retrieved)"
+6,self_check_instruction,True,True,0.75,12193.140745162964,"{
   ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
+    ""task"": ""TRADING"",
+    ""language"": ""Vietnamese"",
+    ""goal"": ""Tối ưu hóa lợi nhuận từ trái phiếu doanh nghiệp dài hạn."",
+    ""income_band"": ""60-120K"",
+    ""capital_range"": ""50-250K"",
+    ""time_horizon"": ""LONG (5y+)"",
+    ""risk_tolerance"": ""LOW""
   },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
+  ""recommendation"": ""Không có khuyến nghị cụ thể cho mục tiêu này vì thiếu thông tin chi tiết về yêu cầu và khả năng chịu rủi ro của khách hàng."",
+  ""reasoning"": ""Khách hàng cần phải cung cấp thêm thông tin để tôi có thể đưa ra lời khuyên phù hợp."",
+  ""risks_caveats"": ""Lời khuyên không áp dụng cho tất cả các trường hợp. Khách hàng nên cân nhắc kỹ lưỡng trước khi thực hiện bất kỳ quyết định nào liên quan đến đầu tư."",
   ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-9,few_shot_structured,True,True,0.0,4709.853410720825,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-9,brief_reasoning,True,True,0.0,7073.040723800659,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-9,self_check_instruction,True,True,0.0,9385.319232940674,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
+  ""disclaimer"": ""Tôi là một trợ lý tài chính và không có khả năng cung cấp lời khuyên cá nhân hoặc chuyên môn. Hãy tham khảo ý kiến của chuyên gia tài chính nếu bạn đang cân nhắc việc đầu tư.""
+}","[PROFILE]
+Task: TRADING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu hóa lợi nhuận từ trái phiếu doanh nghiệp dài hạn."", ""INCOME_BAND"": ""60-120K"", ""CAPITAL_RANGE"": ""50-250K"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""LOW""}
+Unknown fields: [""CREDIT_PREFERENCE""]
+
+[CONTEXT]
+(no external context retrieved)"
+7,baseline_structured,True,True,0.5,9601.04489326477,"{
+  ""profile_summary"": ""The client is planning to optimize their tax on income through legal investment channels and has an income band of $120K+ and capital range of $10-$50K over a medium-term horizon of 1-5 years. The risk tolerance is moderate."",
+  ""recommendation"": ""Invest in diversified portfolios that include stocks, bonds, real estate, and possibly alternative investments like REITs or private equity."",
+  ""reasoning"": ""This approach aims to maximize returns while minimizing taxes by leveraging the tax benefits of certain assets and strategies."",
   ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+    ""Market volatility can affect portfolio performance."",
+    ""Diversification does not guarantee profits but reduces overall risk."",
+    ""Alternative investments carry higher risks and fees.""
   ],
-  ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-10,baseline_structured,True,True,0.0,3310.1909160614014,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": """",
-  ""reasoning"": """",
-  ""risks_caveats"": [],
-  ""sources"": [],
-  ""disclaimer"": """"
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-10,few_shot_structured,True,True,0.0,4730.448961257935,"{
-  ""profile_summary"": ""Insufficient information provided to make a recommendation."",
-  ""recommendation"": null,
-  ""reasoning"": ""Insufficient data to determine appropriate investment strategy."",
-  ""risks_caveats"": ""No specific risks or caveats can be identified without additional details."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available information and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-10,brief_reasoning,True,True,0.0,7019.789218902588,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""risk"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, and risk horizon are all unknown, making it impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": ""Investments carry inherent risks such as market volatility, economic downturns, and personal financial instability."",
-  ""sources"": [],
-  ""disclaimer"": ""This response is based on the available data and should not be considered as personalized financial advice.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
-10,self_check_instruction,True,True,0.0,9404.258966445923,"{
-  ""profile_summary"": {
-    ""income"": ""UNKNOWN"",
-    ""capital"": ""UNKNOWN"",
-    ""horizon"": ""UNKNOWN""
-  },
-  ""recommendation"": ""Insufficient information provided to make a recommendation."",
-  ""reasoning"": ""The goal, income, capital, horizon, and risk levels are not specified. Without this crucial information, it's impossible to provide a tailored investment or financial advice."",
-  ""risks_caveats"": [
-    ""Investment decisions should be based on thorough research and consultation with a professional advisor.""
+  ""sources"": [""Financial Advisor's Guidebook"", ""Tax Planning for High-Income Individuals""],
+  ""disclaimer"": ""This information is for educational purposes only. Consult with a professional advisor before making any investment decisions.""
+}","[PROFILE]
+Task: PLANNING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu thuế thu nhập cá nhân thông qua các kênh đầu tư hợp pháp."", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+7,few_shot_structured,True,True,0.0,7073.843479156494,"{
+  ""profile_summary"": ""The user aims to optimize their tax liability through legal investment channels."",
+  ""recommendation"": ""Investigate diversified portfolios including stocks, bonds, and mutual funds."",
+  ""reasoning"": ""Balanced investments can help manage risk while potentially maximizing after-tax returns."",
+  ""risks_caveats"": ""Market volatility and economic downturns could impact investment performance."",
+  ""sources"": [
+    {
+      ""source"": ""Tax laws"",
+      ""description"": ""Understanding current tax regulations and deductions.""
+    },
+    {
+      ""source"": ""Financial advisors"",
+      ""description"": ""Professional guidance on portfolio construction and management.""
+    }
   ],
+  ""disclaimer"": ""This information is educational and does not constitute professional financial advice.""
+}","[PROFILE]
+Task: PLANNING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu thuế thu nhập cá nhân thông qua các kênh đầu tư hợp pháp."", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+7,brief_reasoning,True,False,0.5,10235.797643661499,"{
+  ""profile_summary"": ""The user is planning for medium-term financial goals and has a capital range of $10,000 to $50,000. They aim to optimize their tax on income through legal investment channels."",
+  ""recommendation"": ""Invest in diversified low-risk assets such as bonds or mutual funds to minimize risk while maximizing returns."",
+  ""reasoning"": ""Given the user's medium-term horizon and moderate risk tolerance, investing in low-risk assets like bonds or mutual funds aligns well with their goal of optimizing tax on income. These investments offer stability and can help manage potential fluctuations in market performance."",
+  ""risks_caveats"": ""While these investments are generally safe, there is always a risk of market volatility which could affect returns. It's important to diversify across different asset classes to mitigate this risk."",
+  ""sources"": [""Financial Advisor"", ""Market Research Reports""],
+  ""disclaimer"": ""This advice is based on general principles and may not apply to all individuals. Always consult with a professional before making any significant financial decisions.""
+}","[PROFILE]
+Task: PLANNING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu thuế thu nhập cá nhân thông qua các kênh đầu tư hợp pháp."", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+7,self_check_instruction,True,True,0.75,18406.2397480011,"{
+  ""profile_summary"": {
+    ""task"": ""PLANNING"",
+    ""language"": ""Vietnamese"",
+    ""goal"": ""Tối ưu thuế thu nhập cá nhân thông qua các kênh đầu tư hợp pháp."",
+    ""income_band"": ""120K+"",
+    ""capital_range"": ""10-50K"",
+    ""time_horizon"": ""MEDIUM (1-5y)"",
+    ""risk_tolerance"": ""MEDIUM""
+  },
+  ""recommendation"": ""Để tối ưu hóa thuế thu nhập cá nhân trong thời gian ngắn hạn (1-3 năm), bạn có thể cân nhắc các phương án đầu tư như chứng khoán, quỹ tín dụng, hoặc bất động sản. Tuy nhiên, cần lưu ý rằng việc đầu tư vào bất động sản có thể mang lại lợi nhuận nhưng cũng tiềm ẩn rủi ro về giá cả và thị trường.""
+  ,
+  ""reasoning"": ""Việc đầu tư vào các kênh này giúp tăng khả năng sinh lời từ tài sản của bạn, giảm bớt chi phí thuế thu nhập cá nhân. Tuy nhiên, do rủi ro cao liên quan đến thị trường, nên cần có kế hoạch chi trả nợ và bảo vệ tài chính cá nhân nếu gặp khó khăn."",
+  ""risks_caveats"": ""Cần cẩn trọng với các hình thức đầu tư không minh bạch hoặc không được cấp phép bởi cơ quan quản lý. Việc đầu tư vào bất động sản đòi hỏi kiến thức chuyên môn và sự hiểu biết sâu sắc về thị trường địa ốc."",
+  ""sources"": [""https://www.tinhte.vn/tu-dien-tai-chinh/du-lieu-viet-nam/du-lieu-thue.html""],
+  ""disclaimer"": ""This information is for general guidance only and should not be considered as professional advice. Always consult with a financial advisor before making any investment decisions.""
+}","[PROFILE]
+Task: PLANNING
+Language: Vietnamese
+Collected: {""GOAL"": ""Tối ưu thuế thu nhập cá nhân thông qua các kênh đầu tư hợp pháp."", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+8,baseline_structured,True,True,0.5,13809.527397155762,"{
+  ""profile_summary"": {
+    ""task"": ""Investment"",
+    ""language"": ""Chinese"",
+    ""goal"": ""Retirement planning: Aim to accumulate $150,000 by the year 2034."",
+    ""income_band"": ""$120,000 or more"",
+    ""capital_range"": ""$250,000 or more"",
+    ""time_horizon"": ""Long-term investment horizon of over 5 years"",
+    ""risk_tolerance"": ""High risk tolerance""
+  },
+  ""recommendation"": ""Given your high-risk tolerance and long-term investment horizon, it is advisable to consider diversified investments such as stocks, real estate, and alternative assets like cryptocurrencies. It's important to allocate capital appropriately based on your income band and time horizon."",
+  ""reasoning"": ""A high-risk tolerance allows for higher potential returns but also comes with increased volatility. A long-term investment horizon suggests patience and willingness to ride out market fluctuations. Diversification helps mitigate risk across different asset classes."",
+  ""risks_caveats"": ""While high-risk investments can potentially yield significant returns, they come with substantial risks including market downturns, liquidity issues, and regulatory changes affecting asset values."",
+  ""sources"": [""Financial advisors"", ""Market research reports""],
+  ""disclaimer"": ""This advice is not intended to be a substitute for professional financial advice. Always consult with a qualified financial advisor before making any investment decisions.""
+}","[PROFILE]
+Task: INVESTMENT
+Language: Chinese
+Collected: {""GOAL"": ""退休规划：希望在20年后积累到150万美元。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+8,few_shot_structured,True,True,0.5,8290.528774261475,"{
+  ""profile_summary"": ""The user aims to accumulate $1.5 million by retirement in 20 years with an annual income of over $120,000 and a capital base of at least $250,000. The investment horizon is long term."",
+  ""recommendation"": ""Given the high-risk tolerance and long-term investment horizon, it's advisable to allocate a significant portion of the capital towards high-growth assets such as stocks or alternative investments."",
+  ""reasoning"": ""High-risk tolerance allows for higher potential returns but also increases the likelihood of volatility and loss of principal."",
+  ""risks_caveats"": ""Potential for substantial gains but also significant losses due to market fluctuations."",
   ""sources"": [],
-  ""disclaimer"": ""This response is generated by an AI model and does not represent any official statement or endorsement from the user or any other entity. The content is for informational purposes only and should not be considered as financial advice. Always conduct your own due diligence before making any financial decisions.""
-}","Goal: UNKNOWN
-Income: UNKNOWN
-Capital: UNKNOWN
-Horizon: UNKNOWN
-Risk: UNKNOWN
-Unknown fields: []"
+  ""disclaimer"": ""This information is provided for educational purposes only and should not be considered as personalized financial advice.""
+}","[PROFILE]
+Task: INVESTMENT
+Language: Chinese
+Collected: {""GOAL"": ""退休规划：希望在20年后积累到150万美元。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+8,brief_reasoning,True,True,0.5,9408.8454246521,"{
+  ""profile_summary"": ""The user aims for a long-term investment goal of accumulating $150,000 in 20 years with an income band of $120,000 and capital range of $250,000."",
+  ""recommendation"": ""Given the high-risk tolerance and long time horizon, it is advisable to allocate a significant portion of the capital towards high-growth investments such as stocks or alternative assets like real estate or private equity."",
+  ""reasoning"": ""High risk tolerance suggests willingness to take on more volatility for potential higher returns. Long time horizon indicates patience and ability to ride out market fluctuations."",
+  ""risks_caveats"": ""High-risk investments come with substantial volatility and require careful diversification to mitigate losses."",
+  ""sources"": [""Financial Advisor's Report"", ""Market Research""],
+  ""disclaimer"": ""This advice is based on general principles and should be tailored by a professional financial advisor considering individual circumstances.""
+}","[PROFILE]
+Task: INVESTMENT
+Language: Chinese
+Collected: {""GOAL"": ""退休规划：希望在20年后积累到150万美元。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+8,self_check_instruction,True,True,0.25,11097.740173339844,"{
+  ""profile_summary"": {
+    ""task"": ""INVESTMENT"",
+    ""language"": ""Chinese"",
+    ""goal"": ""退休规划：希望在20年后积累到150万美元。"",
+    ""income_band"": ""120K+"",
+    ""capital_range"": ""250K+"",
+    ""time_horizon"": ""长期（5年+）"",
+    ""risk_tolerance"": ""高""
+  },
+  ""recommendation"": ""建议采用多元化投资策略，包括股票、债券和房地产等资产类别，以平衡风险与收益。"",
+  ""reasoning"": ""根据您的收入水平和资本规模，以及您对风险的承受能力，我们推荐采取多元化的投资组合来实现您的目标。这样可以分散风险，并可能获得更高的回报。"",
+  ""risks_caveats"": ""然而，投资有风险，包括本金损失的风险。因此，在做出任何投资决策之前，请确保充分了解各种投资产品的特性及潜在风险。"",
+  ""sources"": [""Investopedia"", ""Morningstar""],
+  ""disclaimer"": ""本建议仅供参考，最终的投资决策应基于个人情况和专业财务顾问的意见。""
+}","[PROFILE]
+Task: INVESTMENT
+Language: Chinese
+Collected: {""GOAL"": ""退休规划：希望在20年后积累到150万美元。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""LONG (5y+)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+9,baseline_structured,True,True,0.0,6074.419260025024,"{
+  ""profile_summary"": ""目标是投资极度超跌的中概股，以实现短期收益。"",
+  ""recommendation"": ""建议投资者关注市场中的极度超跌中概股，并考虑进行短线交易。"",
+  ""reasoning"": ""在当前市场环境下，寻找极度超跌的股票可以提供较高的潜在回报率。"",
+  ""risks_caveats"": ""风险提示：短期内市场波动较大，需谨慎操作；高风险偏好者应做好心理准备。"",
+  ""sources"": [""财经新闻网站""],
+  ""disclaimer"": ""本推荐仅供参考，投资决策需自行判断和承担风险。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""投资于极度超跌的中概股反弹。"", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+9,few_shot_structured,True,True,0.5,7646.473169326782,"{
+  ""profile_summary"": ""The user aims to invest in extremely oversold Chinese American stocks that have rebounded significantly. They have an income band below $60K, capital range between $10K and $50K, and a time horizon of less than one year. The risk tolerance is high."",
+  ""recommendation"": ""Investigate potential trading opportunities within the specified parameters."",
+  ""reasoning"": ""Given the high-risk tolerance and short investment horizon, it's crucial to carefully select investments that align with market trends and provide quick returns."",
+  ""risks_caveats"": ""Market volatility can lead to significant losses if not managed properly."",
+  ""sources"": [],
+  ""disclaimer"": ""This information is provided for educational purposes only and should not be considered as financial advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""投资于极度超跌的中概股反弹。"", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+9,brief_reasoning,True,True,0.5,10001.514434814453,"{
+  ""profile_summary"": ""The user is looking for short-term trading opportunities in extremely oversold Chinese American stocks, targeting income below $60k and capital between $10k and $50k, willing to take on high risk."",
+  ""recommendation"": ""Investigate the market conditions of highly oversold Chinese American stocks within the specified parameters."",
+  ""reasoning"": ""Given the low income band ($<60k), the capital range ($10-50k), and the short time horizon (<1 year), this strategy aligns with aggressive trading goals. The willingness to accept high risk suggests an interest in potentially higher returns but also increased volatility."",
+  ""risks_caveats"": ""High-risk strategies often come with significant potential rewards but also substantial losses. It's crucial to manage risk by setting stop-loss orders and diversifying investments."",
+  ""sources"": [""Market data from reputable financial news outlets""],
+  ""disclaimer"": ""Trading carries inherent risks including loss of principal. Always conduct thorough research before making any investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""投资于极度超跌的中概股反弹。"", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+9,self_check_instruction,True,True,0.0,5171.099662780762,"{
+  ""profile_summary"": ""目标是投资极度超跌的中概股，以实现短期收益。"",
+  ""recommendation"": ""建议关注并买入极度超跌的中概股。"",
+  ""reasoning"": ""投资者应选择在市场极度超跌时进行交易，以期获得较高的回报。"",
+  ""risks_caveats"": ""风险提示：短期内可能面临较大波动和亏损的风险。"",
+  ""sources"": [""财经新闻网站""],
+  ""disclaimer"": ""本推荐仅供参考，投资需谨慎。""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""投资于极度超跌的中概股反弹。"", ""INCOME_BAND"": ""<60K"", ""CAPITAL_RANGE"": ""10-50K"", ""TIME_HORIZON"": ""SHORT (<1y)"", ""RISK_TOLERANCE"": ""HIGH""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+10,baseline_structured,True,True,0.5,14124.073266983032,"{
+  ""profile_summary"": ""The user is interested in trading and follows the main flow of industry giants for trend-based trading on large-cap stocks. They aim to achieve an income band of $120K+ and have a capital range of $250K+. The time horizon they consider is medium-term, ranging from 1 to 5 years, and their risk tolerance is moderate."",
+  ""recommendation"": ""Based on the collected information, it seems that the user has a clear understanding of their goals, capital requirements, and risk tolerance. However, without additional context or specific details about the market conditions or strategies being followed, it's difficult to provide more tailored advice."",
+  ""reasoning"": ""The user's goal of following industry giants' trends aligns well with active trading strategies, which can be profitable but also come with higher volatility and potential losses. Given their medium-term timeframe and moderate risk tolerance, this approach might be suitable if managed carefully."",
+  ""risks_caveats"": ""While following industry giants' trends can lead to consistent returns, there is always a risk of missing out on smaller opportunities due to over-reliance on larger moves. Additionally, maintaining capital within the specified range requires disciplined management of investments."",
+  ""sources"": [""Industry reports"", ""Financial news websites""],
+  ""disclaimer"": ""This recommendation is based on general principles and does not take into account any specific market conditions or individual investor circumstances. It is advisable to consult with a financial advisor before making investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""跟随行业巨头的主力资金流，进行大盘股的趋势交易。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+10,few_shot_structured,True,True,0.5,5523.941516876221,"{
+  ""profile_summary"": ""The user aims to follow industry giants' main funds flow for trend trading on large-cap stocks."",
+  ""recommendation"": ""Focus on medium-term investment strategy with an emphasis on capital appreciation."",
+  ""reasoning"": ""Given the medium-time horizon and medium-risk tolerance, focusing on long-term growth potential is advisable."",
+  ""risks_caveats"": ""Market volatility can lead to significant losses; diversify investments."",
+  ""sources"": [],
+  ""disclaimer"": ""This information is provided for educational purposes only and should not be considered as financial advice.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""跟随行业巨头的主力资金流，进行大盘股的趋势交易。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+10,brief_reasoning,True,True,0.5,14380.566120147705,"{
+  ""profile_summary"": ""The user is interested in trading and has collected information about their goals, income band, capital range, time horizon, and risk tolerance."",
+  ""recommendation"": ""Given the user's goal of following industry giants' main funds flow for trend trading on large-cap stocks, within an MEDIUM timeframe (1-5 years), with a medium-risk tolerance, we recommend focusing on systematic investing strategies such as index funds or ETFs. This approach aligns well with the user’s long-term investment horizon and moderate risk appetite."",
+  ""reasoning"": ""By choosing systematic investments like index funds or ETFs, the user can benefit from professional management while maintaining control over their portfolio. These tools offer diversification across various sectors and companies, reducing the impact of any single stock's performance on the overall portfolio. Additionally, they provide transparency into the underlying assets, allowing for informed decision-making based on market trends and economic indicators."",
+  ""risks_caveats"": ""While systematic investing offers benefits, it also comes with certain risks. The primary caveat is the potential for underperformance if not properly managed. It's crucial to regularly review and rebalance the portfolio to ensure it remains aligned with the user's risk tolerance and investment objectives. Staying updated with market news and economic data will help mitigate these risks."",
+  ""sources"": [""Financial Times"", ""Morningstar""],
+  ""disclaimer"": ""This recommendation is based on general principles and does not guarantee specific outcomes. Always conduct thorough research and consult with a financial advisor before making investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""跟随行业巨头的主力资金流，进行大盘股的趋势交易。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"
+10,self_check_instruction,True,True,0.5,9865.971565246582,"{
+  ""profile_summary"": ""The user aims to follow the main flow of industry giants for trend trading in large-cap stocks over a medium-term horizon."",
+  ""recommendation"": ""Based on the collected information, it seems suitable for someone who has a medium-risk tolerance and can manage their capital effectively within the $250k-$1200k range."",
+  ""reasoning"": ""The goal involves following major players' movements, which suggests a focus on established companies or those with strong market presence. The income band of $120K+ indicates potential for higher returns if successful."",
+  ""risks_caveats"": ""While this strategy could potentially yield high returns, there's also a risk of volatility due to the reliance on market trends. It may not be ideal for beginners as it requires significant capital management skills."",
+  ""sources"": [""Industry reports"", ""Financial news""],
+  ""disclaimer"": ""This advice is based on general principles and should be tailored to individual circumstances. Always conduct thorough research before making investment decisions.""
+}","[PROFILE]
+Task: TRADING
+Language: Chinese
+Collected: {""GOAL"": ""跟随行业巨头的主力资金流，进行大盘股的趋势交易。"", ""INCOME_BAND"": ""120K+"", ""CAPITAL_RANGE"": ""250K+"", ""TIME_HORIZON"": ""MEDIUM (1-5y)"", ""RISK_TOLERANCE"": ""MEDIUM""}
+Unknown fields: []
+
+[CONTEXT]
+(no external context retrieved)"

@@ -81,12 +81,12 @@ You MUST follow this sequence:
 # =========================
 # INSTRUCTION
 # =========================
-Return ONLY a valid JSON object with the following keys:
+First draft answer mentally, then return ONLY a valid JSON object with the following keys:
 - "profile_summary": A 1-2 sentence natural synthesis of the user's financial standing.
 - "recommendation": A detailed, high-density, actionable plan and instructions with examples. Provide the 'How'.
-    - For planning task, establish a Capital Allocation Framework or percentage-based distribution plan.
-    - For investment task, provide a Risk-Adjusted Portfolio Architecture with a specific asset class breakdown (e.g., 60% Total Market, 20% International, 20% Fixed Income) and instructions.
-    - For trading task, provide Quantitative Execution Protocols with exact technical entry triggers (e.g., EMA crossovers or RSI divergences), hard stop-loss percentages, and position-sizing math.
+    - If you are asked do a {TaskMode.PLANNING.value} task, establish a Capital Allocation Framework or percentage-based distribution plan.
+    - If you are asked do a {TaskMode.INVESTMENT.value} task, provide a Risk-Adjusted Portfolio Architecture with a specific asset class breakdown (e.g., 60% Total Market, 20% International, 20% Fixed Income) and instructions.
+    - If you are asked do a {TaskMode.TRADING.value} task, provide Quantitative Execution Protocols with exact technical entry triggers (e.g., EMA crossovers or RSI divergences), hard stop-loss percentages, and position-sizing math.
 - "reasoning": Step-by-step derivation. MUST be structured as:
     (1) Key profile facts used,
     (2) Formula applied,
@@ -144,6 +144,8 @@ Unknown fields: {json.dumps(unknown_fields, ensure_ascii=False)}
 
 [CONTEXT]
 {context_block}
+
+Please provide your recommendation following the instructions and protocol in the SYSTEM prompt.
 """.strip()
 
     return [

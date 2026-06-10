@@ -11,8 +11,8 @@ from finbot.schemas import RecommendationError, RecommendationPayload
 
 logger = logging.getLogger(__name__)
 
-_MAX_ERROR_CHARS = 200
-_MAX_LOG_CHARS = 500
+_MAX_ERROR_CHARS = 500
+_MAX_LOG_CHARS = 2000
 
 
 def _extract_json(text: str) -> str | None:
