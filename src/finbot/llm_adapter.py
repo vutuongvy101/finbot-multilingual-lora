@@ -40,7 +40,12 @@ def _get_generator(model_id: str, adapter_source: str | None = None):
     
     # Load LoRA adapter from Hub repo id or local directory
     if adapter_source and _adapter_available(adapter_source):
-        model = PeftModel.from_pretrained(model, adapter_source, torch_dtype=torch_dtype)
+        adapter_kwargs = {"torch_dtype": torch_dtype}
+        if "/" in adapter_source:
+            adapter_kwargs.update(
+                {"token": hf_token, "local_files_only": local_files_only, **({"cache_dir": cache_dir} if cache_dir else {})}
+            )
+        model = PeftModel.from_pretrained(model, adapter_source, **adapter_kwargs)
         print(f"Using fine-tuned model: {adapter_source}")
     else:
         print(f"Using base model: {model_id}")

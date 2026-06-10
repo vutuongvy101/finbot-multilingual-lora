@@ -17,7 +17,7 @@ The system uses a hybrid approach: deterministic components for dialogue managem
 
 - **Backend**: FastAPI with finite-state dialogue engine
 - **Frontend**: Clean browser-based UI with Bootstrap 5
-- **Model**: Fine-tuned Qwen2.5-1.5B-Instruct with LoRA adapter
+- **Model**: Fine-tuned Qwen2.5-1.5B-Instruct with LoRA adapter — [Adapter available on 🤗 Hub](https://huggingface.co/bibbbu/lora-qwen25-1p5b-finbot-v2)
 - **Validation**: Cascading JSON validation and repair pipeline
 
 ## Quick Start
@@ -31,14 +31,13 @@ pip install -e .
 ```
 
 ### Configuration
-Create `.env` file with your Hugging Face token:
+Copy the example env file and set your Hugging Face token (required for first-time model download):
 ```bash
-HF_TOKEN=your_hf_token_here
-HF_LOCAL_FILES_ONLY=0
-FINBOT_ADAPTER_PATH=artifacts/lora-qwen25-1p5b-finbot-v2
-FINBOT_BASE_MODEL=Qwen/Qwen2.5-1.5B-Instruct
-FINBOT_ADAPTER_MODEL_ID=lora-qwen25-1p5b-finbot-v2
+cp .env.example .env
+# edit .env — at minimum set HF_TOKEN
 ```
+
+The `FINBOT_*` variables already default to the Hub adapter and base model; you only need to change them for custom setups. Adapter available on [🤗 Hub](https://huggingface.co/bibbbu/lora-qwen25-1p5b-finbot-v2). Set `FINBOT_ADAPTER_PATH` only for offline/local use.
 
 ### Start Services
 ```bash
@@ -56,7 +55,7 @@ Visit `http://localhost:5500` to use the financial assistant.
 
 - **Teacher-Student Distillation**: Fine-tuned using GPT-5.3 and Gemini-3-Flash generated examples
 - **100% Schema Validity**: Achieved perfect structured output compliance after fine-tuning
-- **Efficient Inference**: 74% reduction in output length and 35% latency improvement
+- **Efficient Inference**: 77% reduction in output length and 43% latency improvement (A100 bf16 eval, n=62)
 - **Cross-Platform**: Supports both CUDA and Apple Silicon (MPS) deployment
 
 ## Project Structure
@@ -92,16 +91,16 @@ finbot/
 │   ├── eval/                    # Model evaluation JSON reports
 │   └── summary/                 # Aggregated metrics and selection notes
 ├── demo/                        # Demo screenshots by task/language
-├── artifacts/                   # LoRA adapter weights and tokenizer files
+├── artifacts/                   # Local adapter cache (weights live on 🤗 Hub)
 └── document/                    # Policy/prompt references and diagrams
 ```
 
 ## Performance
 
-Fine-tuning results on held-out evaluation set:
+Fine-tuning results on held-out evaluation set (n=62, NVIDIA A100 bf16):
 - Schema validity: 0% → 100% 
 - Safety compliance: 100% maintained
-- Output efficiency: 74% token reduction
-- Latency improvement: 35% faster inference
+- Output efficiency: 77% token reduction (638 → 150 mean tokens)
+- Latency improvement: 43% faster inference (5134 → 2902 ms)
 
 For detailed technical documentation, see the [full report](48706094_Report.pdf).
