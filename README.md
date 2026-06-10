@@ -103,4 +103,4 @@ Fine-tuning results on held-out evaluation set (n=62, NVIDIA A100 bf16):
 - Output efficiency: 77% token reduction (638 → 150 mean tokens)
 - Latency improvement: 43% faster inference (5134 → 2902 ms)
 
-For detailed technical documentation, see the [full report](48706094_Report.pdf).
+For detailed technical documentation, see the [technical report](document/finbot-technical-report.pdf).
