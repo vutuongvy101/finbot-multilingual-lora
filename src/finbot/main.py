@@ -29,7 +29,8 @@ import logging
 load_dotenv()
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
-adapter_path = os.getenv("FINBOT_ADAPTER_PATH")
+adapter_repo = os.getenv("FINBOT_ADAPTER_REPO", "bibbbu/lora-qwen25-1p5b-finbot-v2")
+adapter_path = os.getenv("FINBOT_ADAPTER_PATH")  # optional local override
 base_model = os.getenv("FINBOT_BASE_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
 adapter_model_id = os.getenv("FINBOT_ADAPTER_MODEL_ID", "lora-qwen25-1p5b-finbot-v2")
 
@@ -38,18 +39,21 @@ def _resolve_serving_model(model_id: str) -> str:
     """
     Map frontend adapter alias to the actual base model id used by PEFT.
     """
-    if adapter_path and model_id == adapter_model_id:
+    if model_id == adapter_model_id and (adapter_repo or adapter_path):
         return base_model
     return model_id
 
 
-def _resolve_adapter_path(model_id: str) -> str | None:
+def _resolve_adapter_source(model_id: str) -> str | None:
     """
     Only attach LoRA weights when the adapter alias is selected.
+    Local path overrides Hub repo when both are set.
     """
-    if adapter_path and model_id == adapter_model_id:
+    if model_id != adapter_model_id:
+        return None
+    if adapter_path:
         return adapter_path
-    return None
+    return adapter_repo or None
 
 
 logging.basicConfig(
@@ -100,7 +104,7 @@ def health() -> dict[str, str]:
 @app.post("/model/load", response_model=ModelLoadResponse)
 def model_load(payload: ModelLoadRequest) -> ModelLoadResponse:
     resolved_model_id = _resolve_serving_model(payload.model_id)
-    preload_model(resolved_model_id, _resolve_adapter_path(payload.model_id))
+    preload_model(resolved_model_id, _resolve_adapter_source(payload.model_id))
     return ModelLoadResponse(status="ok", model_id=payload.model_id)
 
 
@@ -134,7 +138,7 @@ def chat_turn(payload: ChatTurnRequest) -> ChatTurnResponse:
             ),
             model_id=_resolve_serving_model(payload.model_id),
             lang=result.detected_language,
-            adapter_path=_resolve_adapter_path(payload.model_id),
+            adapter_source=_resolve_adapter_source(payload.model_id),
         )
         
     store.save(session_id, result.session)
